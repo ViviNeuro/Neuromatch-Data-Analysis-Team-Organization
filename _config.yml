@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Impact Scholars Program
-author: Neuromatch
+title: Academies Data Analyses
+author: Viviana Greco
 logo: impact-scholars/images/Sciencematch.png
 only_build_toc_files: true
 
@@ -12,7 +12,7 @@ sphinx:
     myst_heading_anchors: 2
     html_theme_options:  
       logo:
-        text: Impact Scholars Program 
+        text: Academies Data Analyses 
     html_sidebars:
       '**': [navbar-logo.html, search-field.html, sbt-sidebar-nav.html]
 
@@ -25,11 +25,11 @@ execute:
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
-    targetname: impactscholars.tex
+    targetname: AcademiesDataAnalyses.tex
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/neuromatch/impact-scholars  # Online location of your book
+  url: https://github.com/ViviNeuro/Neuromatch-Data-Analysis-Team-Organization  # Online location of your book
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book

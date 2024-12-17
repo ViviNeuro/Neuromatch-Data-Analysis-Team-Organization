@@ -2,55 +2,11 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: impact-scholars/intro
+root: AcademyDataAnalysis/intro
 parts:
-- caption: Program Overview
+- caption: How do we work together
   chapters:
-  - file: impact-scholars/structure
-  - file: impact-scholars/application
-    title: Application
-  - file: impact-scholars/Scholars-role_responsibilities
-    title: Scholars Role and Responsibilities
-  - file: impact-scholars/mentors
-    title: Mentors
-    sections:
-    - file: impact-scholars/mentoring_guidelines
-- caption: Research Outputs
-  chapters:
-  - file: output-guidelines/micropublications
-    title: Micropublications
-  - file: output-guidelines/summary_general_public
-    title: Summary for the General Public
-  - file: output-guidelines/seminar_guidelines
-    title: Seminar Presentations
-
-- caption: Research Training
-  chapters:
-  - file: research-training/workshops
-    title: Workshops
-    sections:
-    - file: research-training/GitGitHub_workshop
-    - file: research-training/Coding_workshop
-    - file: research-training/micropub_workshop
-    - file: research-training/SciComm_workshop
-    - file: research-training/oralPresentation_workshop
-    
-
-- caption: Past Programs
-  chapters:
-  - file: impact-scholars/scholars2023
-    title: Climatematch Impact Scholars Program 2023
-    sections:
-    - file: scholar-outputs/2023/project2
-    - file: scholar-outputs/2023/project3
-    - file: scholar-outputs/2023/project4
-    - file: scholar-outputs/2023/project5
-    - file: scholar-outputs/2023/project7
-    - file: scholar-outputs/2023/project8
-    - file: scholar-outputs/2023/project9
-    - file: scholar-outputs/2023/project11
-    - file: scholar-outputs/2023/project12
-    - file: scholar-outputs/2023/project13
-    - file: scholar-outputs/2023/project14
-  #- file: impact-scholars/seminar_presentations  
-  #  title: Climatematch Seminar Presentations 2023
+  - file: WorkTogether/Accessing the Data
+  - file: WorkTogether/Analyzing the Data
+    title: Understanding the Datasets
+  - file: WorkTogether/Understanding the Datasets
