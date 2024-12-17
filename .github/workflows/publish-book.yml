@@ -47,7 +47,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          ghp-import -n -c "impact-scholars.neuromatch.io" -m "Update course book" _build/html
+          ghp-import -n -m "Update course book" _build/html
           git checkout -f gh-pages
   
       - name: Publish to gh-pages
