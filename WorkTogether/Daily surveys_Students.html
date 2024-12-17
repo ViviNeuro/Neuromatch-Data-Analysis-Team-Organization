@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Analyzing the data &#8212; Academies Data Analyses</title>
+    <title>Daily Surveys Questions: Students &#8212; Academies Data Analyses</title>
   
   
   
@@ -61,12 +61,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'WorkTogether/Analyzing the Data';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'WorkTogether/Daily surveys_Students';</script>
     <link rel="icon" href="../_static/NMA_logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Understanding the Datasets" href="Understanding%20the%20Datasets.html" />
-    <link rel="prev" title="Accedding the Data" href="Accessing%20the%20Data.html" />
+    <link rel="next" title="Daily Surveys Questions: TAs" href="Daily%20surveys_TAs.html" />
+    <link rel="prev" title="Understanding the Datasets" href="Understanding%20the%20Datasets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -175,9 +175,11 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">How do we work together</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Accessing%20the%20Data.html">Accedding the Data</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Understanding the Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Understanding%20the%20Datasets.html">Understanding the Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Accessing%20and%20Analyzing%20the%20Data.html">Accessing and Analyzing the Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Collaboration%20Guidelines.html">Collaboration Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Understanding%20the%20Datasets.html">Question of Interest</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Daily Surveys Questions: Students</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_TAs.html">Daily Surveys Questions: TAs</a></li>
 </ul>
 
     </div>
@@ -237,7 +239,7 @@
       
       
       
-      <li><a href="../_sources/WorkTogether/Analyzing the Data.md" target="_blank"
+      <li><a href="../_sources/WorkTogether/Daily surveys_Students.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +302,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -311,11 +315,41 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Analyzing the data</h1>
+    <h1>Daily Surveys Questions: Students</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survey-completion-rate"><strong>Survey Completion Rate</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pod-experience"><strong>Pod Experience</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pod-social-experience"><strong>Pod Social Experience</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-communication"><strong>TA Communication</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-communication-rating"><strong>TA Communication Rating</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-content-questions"><strong>Daily Content Questions</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correct-answers-plot"><strong>Correct Answers Plot</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-analysis-content-scores-pod-experience-and-ta-communication"><strong>Cross Analysis: Content Scores, Pod Experience, and TA Communication</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pod-experience-vs-content-scores"><strong>Pod Experience vs. Content Scores</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-communication-vs-content-scores"><strong>TA Communication vs. Content Scores</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-effect"><strong>Combined Effect</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-progress"><strong>Tutorial Progress</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-tutorial-progress"><strong>Daily Tutorial Progress</strong></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -325,8 +359,86 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="analyzing-the-data">
-<h1>Analyzing the data<a class="headerlink" href="#analyzing-the-data" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="daily-surveys-questions-students">
+<h1>Daily Surveys Questions: Students<a class="headerlink" href="#daily-surveys-questions-students" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="survey-completion-rate">
+<h2><strong>Survey Completion Rate</strong><a class="headerlink" href="#survey-completion-rate" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What percentage of students, on average, completed the daily surveys?</p></li>
+<li><p>How does survey participation vary across different days?</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="pod-experience">
+<h2><strong>Pod Experience</strong><a class="headerlink" href="#pod-experience" title="Link to this heading">#</a></h2>
+<section id="pod-social-experience">
+<h3><strong>Pod Social Experience</strong><a class="headerlink" href="#pod-social-experience" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How did students rate their social experience in their pods?</p></li>
+<li><p>What is the average pod experience score, and how does it differ across days?</p></li>
+<li><p>Is there a trend in pod experience ratings as the course progresses?</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+<section id="ta-communication">
+<h2><strong>TA Communication</strong><a class="headerlink" href="#ta-communication" title="Link to this heading">#</a></h2>
+<section id="ta-communication-rating">
+<h3><strong>TA Communication Rating</strong><a class="headerlink" href="#ta-communication-rating" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Were students comfortable communicating with their TAs?</p></li>
+<li><p>What percentage of students rated their TA communication as positive or negative?</p></li>
+<li><p>Does the rating of TA communication improve or decline throughout the course?</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+<section id="daily-content-questions">
+<h2><strong>Daily Content Questions</strong><a class="headerlink" href="#daily-content-questions" title="Link to this heading">#</a></h2>
+<section id="correct-answers-plot">
+<h3><strong>Correct Answers Plot</strong><a class="headerlink" href="#correct-answers-plot" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is the percentage of correct answers for each daily content-related question?</p></li>
+<li><p>Are there specific questions where students particularly struggled?</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+<section id="cross-analysis-content-scores-pod-experience-and-ta-communication">
+<h2><strong>Cross Analysis: Content Scores, Pod Experience, and TA Communication</strong><a class="headerlink" href="#cross-analysis-content-scores-pod-experience-and-ta-communication" title="Link to this heading">#</a></h2>
+<section id="pod-experience-vs-content-scores">
+<h3><strong>Pod Experience vs. Content Scores</strong><a class="headerlink" href="#pod-experience-vs-content-scores" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Is there a correlation between low pod experience ratings and lower content-related scores?</p></li>
+<li><p>Can we visualize the relationship between these two variables?</p></li>
+</ul>
+</section>
+<section id="ta-communication-vs-content-scores">
+<h3><strong>TA Communication vs. Content Scores</strong><a class="headerlink" href="#ta-communication-vs-content-scores" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Does poor TA communication explain lower content-related scores?</p></li>
+<li><p>How does TA communication impact content understanding or performance?</p></li>
+</ul>
+</section>
+<section id="combined-effect">
+<h3><strong>Combined Effect</strong><a class="headerlink" href="#combined-effect" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Does a combination of low pod experience and poor TA communication explain lower performance on content-related questions?</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+<section id="tutorial-progress">
+<h2><strong>Tutorial Progress</strong><a class="headerlink" href="#tutorial-progress" title="Link to this heading">#</a></h2>
+<section id="daily-tutorial-progress">
+<h3><strong>Daily Tutorial Progress</strong><a class="headerlink" href="#daily-tutorial-progress" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How far did students get in the daily tutorials by the end of each day? How homogeneous is the tutorial progress within each pod?</p></li>
+<li><p>Is there a correlation between students’ tutorial progress and their overall satisfaction with the course, pod experience, or TA communication?</p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -360,20 +472,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Accessing%20the%20Data.html"
+       href="Understanding%20the%20Datasets.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Accedding the Data</p>
+        <p class="prev-next-title">Understanding the Datasets</p>
       </div>
     </a>
     <a class="right-next"
-       href="Understanding%20the%20Datasets.html"
+       href="Daily%20surveys_TAs.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Understanding the Datasets</p>
+        <p class="prev-next-title">Daily Surveys Questions: TAs</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -383,6 +495,44 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survey-completion-rate"><strong>Survey Completion Rate</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pod-experience"><strong>Pod Experience</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pod-social-experience"><strong>Pod Social Experience</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-communication"><strong>TA Communication</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-communication-rating"><strong>TA Communication Rating</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-content-questions"><strong>Daily Content Questions</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correct-answers-plot"><strong>Correct Answers Plot</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-analysis-content-scores-pod-experience-and-ta-communication"><strong>Cross Analysis: Content Scores, Pod Experience, and TA Communication</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pod-experience-vs-content-scores"><strong>Pod Experience vs. Content Scores</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-communication-vs-content-scores"><strong>TA Communication vs. Content Scores</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-effect"><strong>Combined Effect</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-progress"><strong>Tutorial Progress</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-tutorial-progress"><strong>Daily Tutorial Progress</strong></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
