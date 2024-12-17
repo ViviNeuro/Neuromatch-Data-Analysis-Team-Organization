@@ -6,7 +6,9 @@ root: WorkTogether/intro
 parts:
 - caption: How do we work together
   chapters:
-  - file: WorkTogether/Accessing the Data
-  - file: WorkTogether/Analyzing the Data
-    title: Understanding the Datasets
+  - file: WorkTogether/Accessing and Analyzing the Data
+  - file: WorkTogether/Collaboration Guidelines
   - file: WorkTogether/Understanding the Datasets
+    title: Question of Interest
+  - file: WorkTogether/Daily surveys_Students
+  - file: WorkTogether/Daily surveys_TAs
