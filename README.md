@@ -14,5 +14,7 @@ What You'll Find Here:
 
 ✅ Best Practices: Tips on coding standards, version control, and collaboration within the team.
 
+
 Who It's For:
+
 This repository is designed for new and existing data analysts in the Neuromatch team to ensure consistent and reproducible analysis.
