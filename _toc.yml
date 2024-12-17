@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: AcademyDataAnalysis/WorkTogether/intro
+root: WorkTogether/intro
 parts:
 - caption: How do we work together
   chapters:
