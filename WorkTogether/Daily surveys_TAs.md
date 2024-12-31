@@ -1,50 +1,106 @@
-# Daily Surveys Questions: TAs
+# Daily Survey Cleaning for TAs
 
----
+After [imports and loading set up](), to process and analyze daily survey data collected from TAs (regular, project, and lead), you need to clean the data using the function provided below. 
+This function ensures the data is accurate and relevant for analysis by performing the following steps:
+
+## Add the "WeekDay" Column:
+Each survey file corresponds to data collected for a specific week and day. The function extracts the `w<week_number>d<day_number>` pattern from filenames and adds it as a new column named WeekDay in the respective DataFrame. This allows you to track the day and week for each entry.
+
+## Combine All DataFrames:
+The individual DataFrames for each survey file are merged into a single, comprehensive DataFrame called `combined_df`. This consolidated dataset simplifies and accelerates analysis across all days and weeks.
+
+## Validate TAs Using the TAs_apps Dataset
+To ensure that only matched TAs for the current year and course are included, the function verifies that all `uid` values in the survey data match the `unique_id` values in the TAs_apps dataset.
+
+The TAs_apps dataset contains:
+
+- `course_id:` Identifies the specific course (e.g., course_id = 11).
+- `status:` Filters TAs by application status (e.g., status = "matched").
+
+Rows with uid values not found in the filtered TAs_apps dataset are removed, ensuring the dataset contains only matched and valied entries for the specified course.
+
+[Please use this document to check the course_id number of interest](https://docs.google.com/document/d/1OUPMUGDOYEmp7Znp4ZrBJSi_-vHU0yBH/edit#heading=h.gjdgxs).
+
+## Remove Duplicate Entries
+Duplicate rows based on a combination of WeekDay and uid are identified and removed. Only the first occurrence of each unique combination is retained, ensuring that each TA has a single entry per day.
+
+## Save the Cleaned Dataset 
+The final cleaned dataset is saved as a CSV file (default: `cleaned_combined_df.csv`).
+During this process, the function provides detailed feedback:
+
+- Lists `uid` values in the survey data that are not in the `TAs_apps` dataset.
+- Reports the number of duplicates identified and removed.
 
 
-### **TAs Completion Rate**
-- What percentage of Tas, on average, completed the daily surveys? How many Regular TAs/ Lead TAs/ Project TAs?  
-- How does survey participation vary across different days?  
+```python
+def clean_and_combine_data(dataframes_dict, TAs_apps_path, course_id, status, output_file='combined_df.csv'):
+    """
+    Cleans and combines dataframes, checks UID validity, handles duplicates, and saves the final combined dataframe.
 
----
+    Parameters:
+    - dataframes_dict: Dictionary with filenames as keys and DataFrames as values.
+    - TAs_apps_path: Path to the TAs_apps dataset CSV file.
+    - course_id: Course ID to filter the TAs_apps dataset.
+    - status: Status to filter the TAs_apps dataset.
+    - output_file: Filename to save the cleaned combined dataframe (default: 'combined_df.csv').
+    """
 
-#### **Pod Experience Feedback**
-- What feedback do TAs provide about their experiences working with their pod?  
-- How do TAs describe their experiences with their project group?  
+    # Step 1: Add "WeekDay" column based on the filename pattern
+    for filename, df in dataframes_dict.items():
+        match = re.search(r'w\d+d\d+', filename)
+        if match:
+            df['WeekDay'] = match.group()
+        else:
+            print(f"No 'WeekDay' pattern found in filename: {filename}")
 
----
+    # Step 2: Combine all DataFrames
+    combined_df = pd.concat(dataframes_dict.values(), ignore_index=True)
+    print(f"Combined DataFrame shape: {combined_df.shape}")
+    print('#' * 100)
+    print(' ')
 
-### **Challenges Faced**
-- What major difficulties did TAs encounter while working with their pod?  
-- What challenges did they face while working with their project group?  
+    # Step 3: Load TAs_apps and filter by course_id and status
+    TAs_apps = pd.read_csv(TAs_apps_path)
+    TAs_apps_filtered = TAs_apps[(TAs_apps['course_id'] == course_id) & (TAs_apps['status'] == status)]
+    print(f"Filtered TAs_apps shape: {TAs_apps_filtered.shape}")
+    print('#' * 100)
+    print(' ')
 
----
+    # Step 4: Check that all UID in the new df are present in TA_apps (for the specific course and status that will be specified)
+    missing_values = combined_df.loc[~combined_df['uid'].isin(TAs_apps_filtered['unique_id']), 'uid']
+    if not missing_values.empty:
+        print("Values in combined_df['uid'] not found in TAs_apps_filtered['unique_id']:", missing_values.tolist())
+        combined_df = combined_df[combined_df['uid'].isin(TAs_apps_filtered['unique_id'])]
+        print("Removed rows with missing UIDs. New shape:", combined_df.shape)
+        print('#' * 100)
+        print(' ')
 
-### **TA Workload and Time Management**
+    # Step 5: Check for duplicates within each WeekDay and UID combination
+    duplicates = combined_df[combined_df.duplicated(subset=['WeekDay', 'uid'], keep=False)]
+    if not duplicates.empty:
+        print(f"Duplicate rows found based on ['WeekDay', 'uid']: {len(duplicates)}")
+        #print(len(duplicates))
+        combined_df = combined_df.drop_duplicates(subset=['WeekDay', 'uid'], keep='first')
+        print("Removed duplicates. New shape:", combined_df.shape)
+        print('#' * 100)
+        print(' ')
 
-#### **Daily Working Hours**
-- On average, how many hours did TAs work per day?  
-- Are there differences in working hours between regular TAs, project TAs, and lead TAs?  
+    # Step 6: Save the cleaned DataFrame to CSV
+    combined_df.to_csv(output_file, index=False)
+    print(f"Cleaned DataFrame saved to {output_file}")
 
-#### **Preparation Time**
-- On average, how much time did TAs spend on preparatory work for each session?  
-- Are there differences in preparation time between regular TAs, project TAs, and lead TAs?  
+    return combined_df
+```
 
-#### **Project TA Meetings**
-- On average, how long were the project TAs’ meetings with each project group?  
-- How many project groups did project TAs meet with daily?  
+## Call the function
 
-#### **Breaks During Work Hours**
-- Approximately how long of a break did TAs get during their work hours each day?  
-
----
-
-### **Support and General Feedback**
-
-#### **TA Support Needs**
-- Did TAs provide suggestions on how we can better support them in their role?  
-
-#### **Additional Feedback**
-- What other feedback did TAs share regarding their overall experience, workload, or interaction with students?  
-
+```python
+#Specify the path to the TAs_apps dataset, course ID, and status:
+combined_df = clean_and_combine_data(
+    dataframes_dict=dataframes_dict,
+    TAs_apps_path="/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv",
+    course_id=11,       # Specify the course_id number of interest
+    status="matched",   # Do NOT change the status
+    output_file="cleaned_combined_df.csv" 
+)
+```
