@@ -9,6 +9,8 @@ parts:
   - file: WorkTogether/Accessing and Analyzing the Data
   - file: WorkTogether/Collaboration Guidelines
   - file: WorkTogether/Understanding the Datasets
-    title: Question of Interest
+- caption: Cleaning and Analyses
+  chapters:
+  - file: WorkTogether/Imports & Loading set up
   - file: WorkTogether/Daily surveys_Students
   - file: WorkTogether/Daily surveys_TAs

@@ -1,6 +1,6 @@
 # Understanding the Datasets
 
-To ensure clarity when working with the datasets, we have created **Data Descriptors**. These spreadsheets provide detailed explanations of the variables and their meanings, helping you understand what each column represents. This includes the **type of data** (e.g., free text, single select, multiple choice) and the context of each variable.
+To ensure clarity when working with the datasets, we have created **[Data Descriptors](https://drive.google.com/drive/folders/1u-aG6doOucNUQoFnGyYiuocXddJtc_23)**. These spreadsheets provide detailed explanations of the variables and their meanings, helping you understand what each column represents. This includes the **type of data** (e.g., free text, single select, multiple choice) and the context of each variable.
 
 ### **What’s Included in the Data Descriptors**:
 
