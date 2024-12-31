@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Accessing and Analyzing the Data &#8212; Academies Data Analyses</title>
+    <title>Imports set up &#8212; Academies Data Analyses</title>
   
   
   
@@ -61,12 +61,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'WorkTogether/Accessing and Analyzing the Data';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'WorkTogether/Imports & Loading set up';</script>
     <link rel="icon" href="../_static/NMA_logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Collaboration Guidelines" href="Collaboration%20Guidelines.html" />
-    <link rel="prev" title="Welcome to the Data Analysis Team!" href="intro.html" />
+    <link rel="next" title="Student Insights and Daily Surveys: Key Analysis Questions" href="Daily%20surveys_Students.html" />
+    <link rel="prev" title="Understanding the Datasets" href="Understanding%20the%20Datasets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -174,14 +174,14 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">How do we work together</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Accessing and Analyzing the Data</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Accessing%20and%20Analyzing%20the%20Data.html">Accessing and Analyzing the Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Collaboration%20Guidelines.html">Collaboration Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Understanding%20the%20Datasets.html">Understanding the Datasets</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cleaning and Analyses</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Imports%20%26%20Loading%20set%20up.html">Imports set up</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Imports set up</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_Students.html">Student Insights and Daily Surveys: Key Analysis Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_TAs.html">Daily Survey Cleaning for TAs</a></li>
@@ -244,7 +244,7 @@
       
       
       
-      <li><a href="../_sources/WorkTogether/Accessing and Analyzing the Data.md" target="_blank"
+      <li><a href="../_sources/WorkTogether/Imports & Loading set up.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +320,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Accessing and Analyzing the Data</h1>
+    <h1>Imports set up</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -330,9 +330,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#locate-the-data">1. Locate the Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-google-colab-to-access-google-drive">2. <strong>Use Google Colab to Access Google Drive</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Imports set up</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-set-up">Loading set up</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -343,45 +344,77 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="accessing-and-analyzing-the-data">
-<h1>Accessing and Analyzing the Data<a class="headerlink" href="#accessing-and-analyzing-the-data" title="Link to this heading">#</a></h1>
-<p>To perform analyses, you’ll need to access the datasets stored in Google Drive. Here’s how to get started:</p>
-<section id="locate-the-data">
-<h2>1. Locate the Data<a class="headerlink" href="#locate-the-data" title="Link to this heading">#</a></h2>
-<p>The data are organized in Google Drive and structured by year. Each folder corresponds to a specific year of Academies data collection.</p>
-<p><strong>Link to Google Drive</strong>:<br />
-📂 <a class="reference external" href="https://drive.google.com/drive/folders/1MZPn-ceDuyqoCc-gdiKsAw336Swg8qzZ"><strong>Academies_DataAnalysis</strong></a></p>
-<p>If you do not have access, please reach out to <strong>Viviana Greco</strong> or <strong>Courtney Dean</strong>.</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="imports-set-up">
+<h1>Imports set up<a class="headerlink" href="#imports-set-up" title="Link to this heading">#</a></h1>
 <hr class="docutils" />
-<section id="use-google-colab-to-access-google-drive">
-<h2>2. <strong>Use Google Colab to Access Google Drive</strong><a class="headerlink" href="#use-google-colab-to-access-google-drive" title="Link to this heading">#</a></h2>
-<p>Using Google Colab, follow these steps to mount Google Drive and access the data:</p>
-<ol class="arabic simple">
-<li><p>First, add a shortcut of the <strong>Academies_DataAnalysis</strong> folder to your Drive:</p>
-<ul class="simple">
-<li><p>Go to the <strong>“Shared with me”</strong> section in Google Drive.</p></li>
-<li><p>Right-click the <strong>Academies_DataAnalysis</strong> folder.</p></li>
-<li><p>Click <strong>“Add shortcut to Drive”</strong> → Select <strong>“All locations”</strong> → Choose <strong>“My Drive”</strong> → Click <strong>“Add”</strong>.</p></li>
-</ul>
-</li>
-<li><p>Use the following code snippet in Google Colab to mount Google Drive and load the data:</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<p>All datasets should be cleaned in the same way and throught the notebook you will see how the cleaning function will be shaped for cleaning daily surveys for TAs, students, enrolment and post course survey. Please follow the pipelines created.</p>
+<hr class="docutils" />
+<p>At the top of every notebook, we define an <strong>Import section</strong> where all necessary packages and libraries should be imported. This ensures that all dependencies are loaded at the beginning of the notebook, making it easy to track what packages are in use.</p>
+<p>Below are some recommended packages and configurations that enhance data analysis and visualization quality:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General imports</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>  <span class="c1"># For data manipulation and analysis</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>   <span class="c1"># For numerical operations</span>
+<span class="kn">import</span> <span class="nn">glob</span>          <span class="c1"># For file searching</span>
+<span class="kn">import</span> <span class="nn">re</span>            <span class="c1"># For pattern matching</span>
 
-<span class="c1"># Mount Google Drive</span>
-<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+<span class="c1"># Visualization imports</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># Basic plotting</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>            <span class="c1"># Statistical data visualization</span>
 
-<span class="c1"># Set the path to the data folder</span>
-<span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/Academies_DataAnalysis/July2024/&quot;</span>
+<span class="c1"># Display high-quality plots in SVG format</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="n">display</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>  <span class="c1"># Recommended for better plot quality</span>
 
-<span class="c1"># Example: Load attendance data for 2024</span>
-<span class="n">attendance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s2">&quot;attendance_2024.csv&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">attendance</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># to restrict the float value to 2 decimal places</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.float_format&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># display max numer of columns. Change the value as needed.</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="loading-set-up">
+<h1>Loading set up<a class="headerlink" href="#loading-set-up" title="Link to this heading">#</a></h1>
+<p><strong>Data Loading</strong> will be our second section. We use Google Drive to load datasets.</p>
+<p>The code below mounts Google Drive, finds all CSV files with a specified prefix in a given folder, and loads each CSV file into a dictionary of DataFrames for easy access.</p>
+<p>Instructions:</p>
+<ol class="arabic simple">
+<li><p>Mount Google Drive to access files directly from your Drive.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span><span class="p">,</span> <span class="n">files</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Specify the Folder Path and File Prefix: Set the folder path where the CSV files are stored and the prefix for the files you want to load (e.g., CS for files starting with “CS”).</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">folder_path</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/July2024/DailySurveys/CMA/TAs/&quot;</span>
+<span class="n">file_prefix</span> <span class="o">=</span> <span class="s2">&quot;CS&quot;</span>  <span class="c1"># Replace with your desired prefix</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Load Files Using glob: The code uses glob.glob function to identify all CSV files matching the prefix and loads them into a dictionary, with each filename (minus the path) as the key.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">csv_files</span>       <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">folder_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">file_prefix</span><span class="si">}</span><span class="s2">*.csv&quot;</span><span class="p">)</span>
+<span class="n">dataframes_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">csv_files</span><span class="p">}</span>
+
+<span class="c1"># To access each DataFrame by filename, use the dictionary</span>
+<span class="c1"># Example: Accessing the &#39;CSw1d1-Grid view.csv&#39; file if it exists</span>
+<span class="n">dataframe_name</span> <span class="o">=</span> <span class="s1">&#39;CSw1d1-Grid view.csv&#39;</span> <span class="c1"># Adjust the filename to match your data</span>
+<span class="k">if</span> <span class="n">dataframe_name</span> <span class="ow">in</span> <span class="n">dataframes_dict</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">dataframes_dict</span><span class="p">[</span><span class="n">dataframe_name</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Display the first 5 rows </span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataframe_name</span><span class="si">}</span><span class="s2"> not found in the loaded files.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print the loaded dataframes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loaded DataFrames:&quot;</span><span class="p">,</span> <span class="n">dataframes_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="c1"># Check the number of datasets loaded</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">dataframes_dict</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -415,20 +448,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="Understanding%20the%20Datasets.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to the Data Analysis Team!</p>
+        <p class="prev-next-title">Understanding the Datasets</p>
       </div>
     </a>
     <a class="right-next"
-       href="Collaboration%20Guidelines.html"
+       href="Daily%20surveys_Students.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Collaboration Guidelines</p>
+        <p class="prev-next-title">Student Insights and Daily Surveys: Key Analysis Questions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -449,9 +482,10 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#locate-the-data">1. Locate the Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-google-colab-to-access-google-drive">2. <strong>Use Google Colab to Access Google Drive</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Imports set up</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-set-up">Loading set up</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>

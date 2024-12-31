@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Daily Surveys Questions: TAs &#8212; Academies Data Analyses</title>
+    <title>Daily Survey Cleaning for TAs &#8212; Academies Data Analyses</title>
   
   
   
@@ -173,12 +173,17 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">How do we work together</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Accessing%20and%20Analyzing%20the%20Data.html">Accessing and Analyzing the Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Collaboration%20Guidelines.html">Collaboration Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Understanding%20the%20Datasets.html">Question of Interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Understanding%20the%20Datasets.html">Understanding the Datasets</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cleaning and Analyses</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Imports%20%26%20Loading%20set%20up.html">Imports set up</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_Students.html">Student Insights and Daily Surveys: Key Analysis Questions</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Daily Surveys Questions: TAs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Daily Survey Cleaning for TAs</a></li>
 </ul>
 
     </div>
@@ -314,7 +319,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Daily Surveys Questions: TAs</h1>
+    <h1>Daily Survey Cleaning for TAs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -324,23 +329,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tas-completion-rate"><strong>TAs Completion Rate</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pod-experience-feedback"><strong>Pod Experience Feedback</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-faced"><strong>Challenges Faced</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-workload-and-time-management"><strong>TA Workload and Time Management</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-working-hours"><strong>Daily Working Hours</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-time"><strong>Preparation Time</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-ta-meetings"><strong>Project TA Meetings</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breaks-during-work-hours"><strong>Breaks During Work Hours</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support-and-general-feedback"><strong>Support and General Feedback</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-support-needs"><strong>TA Support Needs</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-feedback"><strong>Additional Feedback</strong></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-weekday-column">Add the “WeekDay” Column:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-all-dataframes">Combine All DataFrames:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-tas-using-the-tas-apps-dataset">Validate TAs Using the TAs_apps Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-duplicate-entries">Remove Duplicate Entries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-cleaned-dataset">Save the Cleaned Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#call-the-function">Call the function</a></li>
 </ul>
             </nav>
         </div>
@@ -352,78 +346,113 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="daily-surveys-questions-tas">
-<h1>Daily Surveys Questions: TAs<a class="headerlink" href="#daily-surveys-questions-tas" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
-<section id="tas-completion-rate">
-<h2><strong>TAs Completion Rate</strong><a class="headerlink" href="#tas-completion-rate" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="daily-survey-cleaning-for-tas">
+<h1>Daily Survey Cleaning for TAs<a class="headerlink" href="#daily-survey-cleaning-for-tas" title="Link to this heading">#</a></h1>
+<p>After <a class="reference internal" href="#"><span class="xref myst">imports and loading set up</span></a>, to process and analyze daily survey data collected from TAs (regular, project, and lead), you need to clean the data using the function provided below.
+This function ensures the data is accurate and relevant for analysis by performing the following steps:</p>
+<section id="add-the-weekday-column">
+<h2>Add the “WeekDay” Column:<a class="headerlink" href="#add-the-weekday-column" title="Link to this heading">#</a></h2>
+<p>Each survey file corresponds to data collected for a specific week and day. The function extracts the <code class="docutils literal notranslate"><span class="pre">w&lt;week_number&gt;d&lt;day_number&gt;</span></code> pattern from filenames and adds it as a new column named WeekDay in the respective DataFrame. This allows you to track the day and week for each entry.</p>
+</section>
+<section id="combine-all-dataframes">
+<h2>Combine All DataFrames:<a class="headerlink" href="#combine-all-dataframes" title="Link to this heading">#</a></h2>
+<p>The individual DataFrames for each survey file are merged into a single, comprehensive DataFrame called <code class="docutils literal notranslate"><span class="pre">combined_df</span></code>. This consolidated dataset simplifies and accelerates analysis across all days and weeks.</p>
+</section>
+<section id="validate-tas-using-the-tas-apps-dataset">
+<h2>Validate TAs Using the TAs_apps Dataset<a class="headerlink" href="#validate-tas-using-the-tas-apps-dataset" title="Link to this heading">#</a></h2>
+<p>To ensure that only matched TAs for the current year and course are included, the function verifies that all <code class="docutils literal notranslate"><span class="pre">uid</span></code> values in the survey data match the <code class="docutils literal notranslate"><span class="pre">unique_id</span></code> values in the TAs_apps dataset.</p>
+<p>The TAs_apps dataset contains:</p>
 <ul class="simple">
-<li><p>What percentage of Tas, on average, completed the daily surveys? How many Regular TAs/ Lead TAs/ Project TAs?</p></li>
-<li><p>How does survey participation vary across different days?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">course_id:</span></code> Identifies the specific course (e.g., course_id = 11).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status:</span></code> Filters TAs by application status (e.g., status = “matched”).</p></li>
 </ul>
-<hr class="docutils" />
-<section id="pod-experience-feedback">
-<h3><strong>Pod Experience Feedback</strong><a class="headerlink" href="#pod-experience-feedback" title="Link to this heading">#</a></h3>
+<p>Rows with uid values not found in the filtered TAs_apps dataset are removed, ensuring the dataset contains only matched and valied entries for the specified course.</p>
+<p><a class="reference external" href="https://docs.google.com/document/d/1OUPMUGDOYEmp7Znp4ZrBJSi_-vHU0yBH/edit#heading=h.gjdgxs">Please use this document to check the course_id number of interest</a>.</p>
+</section>
+<section id="remove-duplicate-entries">
+<h2>Remove Duplicate Entries<a class="headerlink" href="#remove-duplicate-entries" title="Link to this heading">#</a></h2>
+<p>Duplicate rows based on a combination of WeekDay and uid are identified and removed. Only the first occurrence of each unique combination is retained, ensuring that each TA has a single entry per day.</p>
+</section>
+<section id="save-the-cleaned-dataset">
+<h2>Save the Cleaned Dataset<a class="headerlink" href="#save-the-cleaned-dataset" title="Link to this heading">#</a></h2>
+<p>The final cleaned dataset is saved as a CSV file (default: <code class="docutils literal notranslate"><span class="pre">cleaned_combined_df.csv</span></code>).
+During this process, the function provides detailed feedback:</p>
 <ul class="simple">
-<li><p>What feedback do TAs provide about their experiences working with their pod?</p></li>
-<li><p>How do TAs describe their experiences with their project group?</p></li>
+<li><p>Lists <code class="docutils literal notranslate"><span class="pre">uid</span></code> values in the survey data that are not in the <code class="docutils literal notranslate"><span class="pre">TAs_apps</span></code> dataset.</p></li>
+<li><p>Reports the number of duplicates identified and removed.</p></li>
 </ul>
-<hr class="docutils" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_and_combine_data</span><span class="p">(</span><span class="n">dataframes_dict</span><span class="p">,</span> <span class="n">TAs_apps_path</span><span class="p">,</span> <span class="n">course_id</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;combined_df.csv&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cleans and combines dataframes, checks UID validity, handles duplicates, and saves the final combined dataframe.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - dataframes_dict: Dictionary with filenames as keys and DataFrames as values.</span>
+<span class="sd">    - TAs_apps_path: Path to the TAs_apps dataset CSV file.</span>
+<span class="sd">    - course_id: Course ID to filter the TAs_apps dataset.</span>
+<span class="sd">    - status: Status to filter the TAs_apps dataset.</span>
+<span class="sd">    - output_file: Filename to save the cleaned combined dataframe (default: &#39;combined_df.csv&#39;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Step 1: Add &quot;WeekDay&quot; column based on the filename pattern</span>
+    <span class="k">for</span> <span class="n">filename</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dataframes_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;w\d+d\d+&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No &#39;WeekDay&#39; pattern found in filename: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Step 2: Combine all DataFrames</span>
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes_dict</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined DataFrame shape: </span><span class="si">{</span><span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="c1"># Step 3: Load TAs_apps and filter by course_id and status</span>
+    <span class="n">TAs_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">TAs_apps_path</span><span class="p">)</span>
+    <span class="n">TAs_apps_filtered</span> <span class="o">=</span> <span class="n">TAs_apps</span><span class="p">[(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">course_id</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">status</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filtered TAs_apps shape: </span><span class="si">{</span><span class="n">TAs_apps_filtered</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="c1"># Step 4: Check that all UID in the new df are present in TA_apps (for the specific course and status that will be specified)</span>
+    <span class="n">missing_values</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]),</span> <span class="s1">&#39;uid&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values in combined_df[&#39;uid&#39;] not found in TAs_apps_filtered[&#39;unique_id&#39;]:&quot;</span><span class="p">,</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">])]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed rows with missing UIDs. New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="c1"># Step 5: Check for duplicates within each WeekDay and UID combination</span>
+    <span class="n">duplicates</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">duplicates</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duplicate rows found based on [&#39;WeekDay&#39;, &#39;uid&#39;]: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1">#print(len(duplicates))</span>
+        <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed duplicates. New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="c1"># Step 6: Save the cleaned DataFrame to CSV</span>
+    <span class="n">combined_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cleaned DataFrame saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">combined_df</span>
+</pre></div>
+</div>
 </section>
-</section>
-<section id="challenges-faced">
-<h2><strong>Challenges Faced</strong><a class="headerlink" href="#challenges-faced" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>What major difficulties did TAs encounter while working with their pod?</p></li>
-<li><p>What challenges did they face while working with their project group?</p></li>
-</ul>
-<hr class="docutils" />
-</section>
-<section id="ta-workload-and-time-management">
-<h2><strong>TA Workload and Time Management</strong><a class="headerlink" href="#ta-workload-and-time-management" title="Link to this heading">#</a></h2>
-<section id="daily-working-hours">
-<h3><strong>Daily Working Hours</strong><a class="headerlink" href="#daily-working-hours" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>On average, how many hours did TAs work per day?</p></li>
-<li><p>Are there differences in working hours between regular TAs, project TAs, and lead TAs?</p></li>
-</ul>
-</section>
-<section id="preparation-time">
-<h3><strong>Preparation Time</strong><a class="headerlink" href="#preparation-time" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>On average, how much time did TAs spend on preparatory work for each session?</p></li>
-<li><p>Are there differences in preparation time between regular TAs, project TAs, and lead TAs?</p></li>
-</ul>
-</section>
-<section id="project-ta-meetings">
-<h3><strong>Project TA Meetings</strong><a class="headerlink" href="#project-ta-meetings" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>On average, how long were the project TAs’ meetings with each project group?</p></li>
-<li><p>How many project groups did project TAs meet with daily?</p></li>
-</ul>
-</section>
-<section id="breaks-during-work-hours">
-<h3><strong>Breaks During Work Hours</strong><a class="headerlink" href="#breaks-during-work-hours" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Approximately how long of a break did TAs get during their work hours each day?</p></li>
-</ul>
-<hr class="docutils" />
-</section>
-</section>
-<section id="support-and-general-feedback">
-<h2><strong>Support and General Feedback</strong><a class="headerlink" href="#support-and-general-feedback" title="Link to this heading">#</a></h2>
-<section id="ta-support-needs">
-<h3><strong>TA Support Needs</strong><a class="headerlink" href="#ta-support-needs" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Did TAs provide suggestions on how we can better support them in their role?</p></li>
-</ul>
-</section>
-<section id="additional-feedback">
-<h3><strong>Additional Feedback</strong><a class="headerlink" href="#additional-feedback" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>What other feedback did TAs share regarding their overall experience, workload, or interaction with students?</p></li>
-</ul>
-</section>
+<section id="call-the-function">
+<h2>Call the function<a class="headerlink" href="#call-the-function" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Specify the path to the TAs_apps dataset, course ID, and status:</span>
+<span class="n">combined_df</span> <span class="o">=</span> <span class="n">clean_and_combine_data</span><span class="p">(</span>
+    <span class="n">dataframes_dict</span><span class="o">=</span><span class="n">dataframes_dict</span><span class="p">,</span>
+    <span class="n">TAs_apps_path</span><span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span>
+    <span class="n">course_id</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>       <span class="c1"># Specify the course_id number of interest</span>
+    <span class="n">status</span><span class="o">=</span><span class="s2">&quot;matched&quot;</span><span class="p">,</span>   <span class="c1"># Do NOT change the status</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;cleaned_combined_df.csv&quot;</span> 
+<span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -483,23 +512,12 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tas-completion-rate"><strong>TAs Completion Rate</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pod-experience-feedback"><strong>Pod Experience Feedback</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-faced"><strong>Challenges Faced</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-workload-and-time-management"><strong>TA Workload and Time Management</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-working-hours"><strong>Daily Working Hours</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-time"><strong>Preparation Time</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-ta-meetings"><strong>Project TA Meetings</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breaks-during-work-hours"><strong>Breaks During Work Hours</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support-and-general-feedback"><strong>Support and General Feedback</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ta-support-needs"><strong>TA Support Needs</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-feedback"><strong>Additional Feedback</strong></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-weekday-column">Add the “WeekDay” Column:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-all-dataframes">Combine All DataFrames:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-tas-using-the-tas-apps-dataset">Validate TAs Using the TAs_apps Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-duplicate-entries">Remove Duplicate Entries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-cleaned-dataset">Save the Cleaned Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#call-the-function">Call the function</a></li>
 </ul>
   </nav></div>
 
