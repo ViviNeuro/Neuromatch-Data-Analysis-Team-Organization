@@ -1,9 +1,13 @@
-# Student Insights and Daily Surveys: Key Analysis Questions
+# Students Daily Surveys: Key Analysis Questions
 
 
-Welcome to the Student Insights and Daily Surveys page! This section is designed to guide data analysts through the key questions related to students' experiences during the course. By addressing these questions, we aim to uncover valuable patterns and insights about *survey participation, social dynamics, TA interactions, and content engagement*. Use these points as a framework to ensure consistent and thorough analysis.
+Welcome to the Student Daily Surveys Key Questions page!
 
-Example of presentation for your reference: https://docs.google.com/presentation/d/1egp0GtndITjjlA_2gRbyjYWbCf23cv81sgXPpfcB-ZI/edit#slide=id.g31966fbc7bc_0_432
+Before you begin any analyses, please ensure that your data is properly cleaned. 
+
+This section is intended to guide data analysts through the key questions that explore students’ experiences during the course. By investigating these questions, we aim to uncover valuable insights regarding survey participation, social dynamics, TA interactions, and content engagement. Use these points as a framework to maintain consistency and depth in your analysis.
+
+Once your analyses are complete, please create a PowerPoint presentation to summarize your findings. For reference, you may consult an example presentation here: https://docs.google.com/presentation/d/1egp0GtndITjjlA_2gRbyjYWbCf23cv81sgXPpfcB-ZI/edit#slide=id.g31966fbc7bc_0_432
 
 ---
 
