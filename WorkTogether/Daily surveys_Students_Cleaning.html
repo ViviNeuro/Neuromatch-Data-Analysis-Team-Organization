@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Daily Survey Cleaning for TAs &#8212; Academies Data Analyses</title>
+    <title>Students Daily Surveys - Cleaning &#8212; Academies Data Analyses</title>
   
   
   
@@ -61,11 +61,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'WorkTogether/Daily surveys_TAs';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'WorkTogether/Daily surveys_Students_Cleaning';</script>
     <link rel="icon" href="../_static/NMA_logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Students Daily Surveys: Key Analysis Questions" href="Daily%20surveys_Students.html" />
+    <link rel="next" title="Students Daily Surveys: Key Analysis Questions" href="Daily%20surveys_Students.html" />
+    <link rel="prev" title="Imports set up" href="Imports%20%26%20Loading%20set%20up.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -182,9 +183,9 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Imports%20%26%20Loading%20set%20up.html">Imports set up</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_Students_Cleaning.html">Students Daily Surveys - Cleaning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Students Daily Surveys - Cleaning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_Students.html">Students Daily Surveys - Key Analysis Questions</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Daily Survey Cleaning for TAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_TAs.html">Daily Survey Cleaning for TAs</a></li>
 </ul>
 
     </div>
@@ -244,7 +245,7 @@
       
       
       
-      <li><a href="../_sources/WorkTogether/Daily surveys_TAs.md" target="_blank"
+      <li><a href="../_sources/WorkTogether/Daily surveys_Students_Cleaning.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +321,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Daily Survey Cleaning for TAs</h1>
+    <h1>Students Daily Surveys - Cleaning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -332,10 +333,9 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-weekday-column">Add the “WeekDay” Column:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-all-dataframes">Combine All DataFrames:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-tas-using-the-tas-apps-dataset">Validate TAs Using the TAs_apps Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-students-uid">Validate Students UID</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-duplicate-entries">Remove Duplicate Entries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-cleaned-dataset">Save the Cleaned Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#call-the-function">Call the function</a></li>
 </ul>
             </nav>
         </div>
@@ -347,9 +347,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="daily-survey-cleaning-for-tas">
-<h1>Daily Survey Cleaning for TAs<a class="headerlink" href="#daily-survey-cleaning-for-tas" title="Link to this heading">#</a></h1>
-<p>After <a class="reference internal" href="#"><span class="xref myst">imports and loading set up</span></a>, to process and analyze daily survey data collected from TAs (regular, project, and lead), you need to clean the data using the function provided below.
+  <section class="tex2jax_ignore mathjax_ignore" id="students-daily-surveys-cleaning">
+<h1>Students Daily Surveys - Cleaning<a class="headerlink" href="#students-daily-surveys-cleaning" title="Link to this heading">#</a></h1>
+<p>After <a class="reference external" href="https://vivineuro.github.io/Neuromatch-Data-Analysis-Team-Organization/WorkTogether/Imports%20%26%20Loading%20set%20up.html">imports and loading set up</a>, to process and analyze daily survey data collected from students, you need to clean the data using the function provided below.
 This function ensures the data is accurate and relevant for analysis by performing the following steps:</p>
 <section id="add-the-weekday-column">
 <h2>Add the “WeekDay” Column:<a class="headerlink" href="#add-the-weekday-column" title="Link to this heading">#</a></h2>
@@ -359,44 +359,55 @@ This function ensures the data is accurate and relevant for analysis by performi
 <h2>Combine All DataFrames:<a class="headerlink" href="#combine-all-dataframes" title="Link to this heading">#</a></h2>
 <p>The individual DataFrames for each survey file are merged into a single, comprehensive DataFrame called <code class="docutils literal notranslate"><span class="pre">combined_df</span></code>. This consolidated dataset simplifies and accelerates analysis across all days and weeks.</p>
 </section>
-<section id="validate-tas-using-the-tas-apps-dataset">
-<h2>Validate TAs Using the TAs_apps Dataset<a class="headerlink" href="#validate-tas-using-the-tas-apps-dataset" title="Link to this heading">#</a></h2>
-<p>To ensure that only matched TAs for the current year and course are included, the function verifies that all <code class="docutils literal notranslate"><span class="pre">uid</span></code> values in the survey data match the <code class="docutils literal notranslate"><span class="pre">unique_id</span></code> values in the TAs_apps dataset.</p>
-<p>The TAs_apps dataset contains:</p>
+<section id="validate-students-uid">
+<h2>Validate Students UID<a class="headerlink" href="#validate-students-uid" title="Link to this heading">#</a></h2>
+<p>To ensure that only matched students for the current year and course are included, the function verifies that all <code class="docutils literal notranslate"><span class="pre">uid</span></code> values in the survey data match the <code class="docutils literal notranslate"><span class="pre">unique_id</span></code> values in the <code class="docutils literal notranslate"><span class="pre">Students_ReceivedApp_from2021</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Students_ReceivedApp_from2021</span></code> dataset contains:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">course_id:</span></code> Identifies the specific course (e.g., course_id = 11).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">status:</span></code> Filters TAs by application status (e.g., status = “matched”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application_status:</span></code> Filters students by application status (e.g., status = “matched”).</p></li>
 </ul>
-<p>Rows with uid values not found in the filtered TAs_apps dataset are removed, ensuring the dataset contains only matched and valied entries for the specified course.</p>
+<p>Rows with uid values not found in the filtered <code class="docutils literal notranslate"><span class="pre">Students_ReceivedApp_from2021</span></code> dataset are first cross-referenced with the complete (unfiltered) <code class="docutils literal notranslate"><span class="pre">Students_ReceivedApp_from2021</span></code> dataset to undertand where are these uid coming from.</p>
+<p>If there are still unmatched uid values, they are then checked against the TAs dataset.</p>
+<p>After these verifications, the function retains only the uid values that are matched and are valid entries for the specified course, removing all others.</p>
 <p><a class="reference external" href="https://docs.google.com/document/d/1OUPMUGDOYEmp7Znp4ZrBJSi_-vHU0yBH/edit#heading=h.gjdgxs">Please use this document to check the course_id number of interest</a>.</p>
 </section>
 <section id="remove-duplicate-entries">
 <h2>Remove Duplicate Entries<a class="headerlink" href="#remove-duplicate-entries" title="Link to this heading">#</a></h2>
-<p>Duplicate rows based on a combination of WeekDay and uid are identified and removed. Only the first occurrence of each unique combination is retained, ensuring that each TA has a single entry per day.</p>
+<p>Duplicate rows based on a combination of WeekDay and uid are identified and removed. Only the first occurrence of each unique combination is retained, ensuring that each student has a single entry per day.</p>
 </section>
 <section id="save-the-cleaned-dataset">
 <h2>Save the Cleaned Dataset<a class="headerlink" href="#save-the-cleaned-dataset" title="Link to this heading">#</a></h2>
 <p>The final cleaned dataset is saved as a CSV file (default: <code class="docutils literal notranslate"><span class="pre">cleaned_combined_df.csv</span></code>).
 During this process, the function provides detailed feedback:</p>
 <ul class="simple">
-<li><p>Lists <code class="docutils literal notranslate"><span class="pre">uid</span></code> values in the survey data that are not in the <code class="docutils literal notranslate"><span class="pre">TAs_apps</span></code> dataset.</p></li>
+<li><p>Lists <code class="docutils literal notranslate"><span class="pre">uid</span></code> values in the survey data that are not in the <code class="docutils literal notranslate"><span class="pre">Students_ReceivedApp_from2021</span></code> dataset.</p></li>
 <li><p>Reports the number of duplicates identified and removed.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_and_combine_data</span><span class="p">(</span><span class="n">dataframes_dict</span><span class="p">,</span> <span class="n">TAs_apps_path</span><span class="p">,</span> <span class="n">course_id</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;combined_df.csv&#39;</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_and_combine_data</span><span class="p">(</span>
+    <span class="n">dataframes_dict</span><span class="p">,</span>
+    <span class="n">ST_apps_path</span><span class="p">,</span>
+    <span class="n">course_id</span><span class="p">,</span>
+    <span class="n">status</span><span class="p">,</span>
+    <span class="n">TAs_apps_path</span><span class="p">,</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;combined_df.csv&#39;</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Cleans and combines dataframes, checks UID validity, handles duplicates, and saves the final combined dataframe.</span>
+<span class="sd">    Cleans and combines dataframes, checks UID validity, handles duplicates,</span>
+<span class="sd">    and saves the final combined dataframe.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">    - dataframes_dict: Dictionary with filenames as keys and DataFrames as values.</span>
+<span class="sd">    - ST_apps_path: Path to the ST_apps dataset CSV file.</span>
+<span class="sd">    - course_id: Course ID to filter the ST_apps dataset.</span>
+<span class="sd">    - status: Status to filter the ST_apps dataset.</span>
 <span class="sd">    - TAs_apps_path: Path to the TAs_apps dataset CSV file.</span>
-<span class="sd">    - course_id: Course ID to filter the TAs_apps dataset.</span>
-<span class="sd">    - status: Status to filter the TAs_apps dataset.</span>
 <span class="sd">    - output_file: Filename to save the cleaned combined dataframe (default: &#39;combined_df.csv&#39;).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Step 1: Add &quot;WeekDay&quot; column based on the filename pattern</span>
     <span class="k">for</span> <span class="n">filename</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dataframes_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;w\d+d\d+&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;w\d+d\d+&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
             <span class="n">df</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -406,33 +417,89 @@ During this process, the function provides detailed feedback:</p>
     <span class="n">combined_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes_dict</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined DataFrame shape: </span><span class="si">{</span><span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
 
-    <span class="c1"># Step 3: Load TAs_apps and filter by course_id and status</span>
+    <span class="c1"># Step 3: Load ST_apps (full) and TAs_apps, then filter ST_apps by course_id and status</span>
+    <span class="n">ST_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ST_apps_path</span><span class="p">)</span>
     <span class="n">TAs_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">TAs_apps_path</span><span class="p">)</span>
-    <span class="n">TAs_apps_filtered</span> <span class="o">=</span> <span class="n">TAs_apps</span><span class="p">[(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">course_id</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">status</span><span class="p">)]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filtered TAs_apps shape: </span><span class="si">{</span><span class="n">TAs_apps_filtered</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 
-    <span class="c1"># Step 4: Check that all UID in the new df are present in TA_apps (for the specific course and status that will be specified)</span>
-    <span class="n">missing_values</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]),</span> <span class="s1">&#39;uid&#39;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values in combined_df[&#39;uid&#39;] not found in TAs_apps_filtered[&#39;unique_id&#39;]:&quot;</span><span class="p">,</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-        <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">])]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed rows with missing UIDs. New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">ST_apps_filtered</span> <span class="o">=</span> <span class="n">ST_apps</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">ST_apps</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">course_id</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">ST_apps</span><span class="p">[</span><span class="s1">&#39;application_status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">status</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filtered ST_apps shape: </span><span class="si">{</span><span class="n">ST_apps_filtered</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+    <span class="c1"># Step 4: Identify UIDs in combined_df that are NOT in ST_apps_filtered</span>
+    <span class="n">missing_values</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="o">~</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ST_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]),</span> <span class="s1">&#39;uid&#39;</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">missing_values</span><span class="p">)</span><span class="si">}</span><span class="s2"> values in combined_df[&#39;uid&#39;] NOT found in ST_apps_filtered[&#39;unique_id&#39;]:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">missing_values</span><span class="p">)</span>
+
+        <span class="c1"># 4A: Check these missing UIDs in the FULL ST_apps</span>
+        <span class="n">missing_in_ST_full</span> <span class="o">=</span> <span class="n">ST_apps</span><span class="p">[</span><span class="n">ST_apps</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">missing_values</span><span class="p">)]</span>
+        <span class="n">found_uids_ST</span> <span class="o">=</span> <span class="n">missing_in_ST_full</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">found_uids_ST</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">—&gt; Missing UIDs found in the FULL ST_apps:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">found_uids_ST</span><span class="p">:</span>
+                <span class="n">uid_rows</span> <span class="o">=</span> <span class="n">missing_in_ST_full</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                    <span class="n">missing_in_ST_full</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">uid</span><span class="p">,</span>
+                    <span class="p">[</span><span class="s1">&#39;application_status&#39;</span><span class="p">,</span> <span class="s1">&#39;course_id&#39;</span><span class="p">]</span>
+                <span class="p">]</span>
+                <span class="n">statuses</span> <span class="o">=</span> <span class="n">uid_rows</span><span class="p">[</span><span class="s1">&#39;application_status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+                <span class="n">course_ids</span> <span class="o">=</span> <span class="n">uid_rows</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  UID = </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">, status = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">statuses</span><span class="p">)</span><span class="si">}</span><span class="s2">, course_id = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">course_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 4B: After ST check, see which UIDs remain missing</span>
+        <span class="n">still_missing_after_ST</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">missing_values</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">found_uids_ST</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">still_missing_after_ST</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">—&gt; These </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">still_missing_after_ST</span><span class="p">)</span><span class="si">}</span><span class="s2"> UIDs are still missing after checking FULL ST_apps:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">still_missing_after_ST</span><span class="p">)</span>
+
+            <span class="c1"># Now check the still-missing UIDs in TAs_apps</span>
+            <span class="n">missing_in_TAs</span> <span class="o">=</span> <span class="n">TAs_apps</span><span class="p">[</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">still_missing_after_ST</span><span class="p">)]</span>
+            <span class="n">found_uids_TAs</span> <span class="o">=</span> <span class="n">missing_in_TAs</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">found_uids_TAs</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">—&gt; Missing UIDs found in the TAs_apps dataset:&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">found_uids_TAs</span><span class="p">:</span>
+                    <span class="n">uid_rows</span> <span class="o">=</span> <span class="n">missing_in_TAs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                        <span class="n">missing_in_TAs</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">uid</span><span class="p">,</span>
+                        <span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;course_id&#39;</span><span class="p">]</span>
+                    <span class="p">]</span>
+                    <span class="n">statuses</span> <span class="o">=</span> <span class="n">uid_rows</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+                    <span class="n">course_ids</span> <span class="o">=</span> <span class="n">uid_rows</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  UID = </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">, status = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">statuses</span><span class="p">)</span><span class="si">}</span><span class="s2">, course_id = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">course_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># UIDs not found anywhere (neither in full ST nor TAs)</span>
+            <span class="n">not_found_anywhere</span> <span class="o">=</span> <span class="n">still_missing_after_ST</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">found_uids_TAs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">not_found_anywhere</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">—&gt; The following missing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">not_found_anywhere</span><span class="p">)</span><span class="si">}</span><span class="s2"> UIDs were NOT found in ST_apps_filtered, FULL ST_apps, or TAs_apps:&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">not_found_anywhere</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If nothing left after the ST check, skip TAs_apps checks</span>
+            <span class="n">found_uids_TAs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Finally, remove rows from combined_df that are NOT in ST_apps_filtered</span>
+        <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ST_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">])]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Removed rows with missing UIDs that are not in the filtered list.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
 
     <span class="c1"># Step 5: Check for duplicates within each WeekDay and UID combination</span>
     <span class="n">duplicates</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">duplicates</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duplicate rows found based on [&#39;WeekDay&#39;, &#39;uid&#39;]: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1">#print(len(duplicates))</span>
         <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed duplicates. New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
 
     <span class="c1"># Step 6: Save the cleaned DataFrame to CSV</span>
     <span class="n">combined_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -441,15 +508,12 @@ During this process, the function provides detailed feedback:</p>
     <span class="k">return</span> <span class="n">combined_df</span>
 </pre></div>
 </div>
-</section>
-<section id="call-the-function">
-<h2>Call the function<a class="headerlink" href="#call-the-function" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Specify the path to the TAs_apps dataset, course ID, and status:</span>
-<span class="n">combined_df</span> <span class="o">=</span> <span class="n">clean_and_combine_data</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">combined_df</span> <span class="o">=</span> <span class="n">clean_and_combine_data</span><span class="p">(</span>
     <span class="n">dataframes_dict</span><span class="o">=</span><span class="n">dataframes_dict</span><span class="p">,</span>
-    <span class="n">TAs_apps_path</span><span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
+    <span class="n">ST_apps_path</span><span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
     <span class="n">course_id</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>       <span class="c1"># Specify the course_id number of interest</span>
     <span class="n">status</span><span class="o">=</span><span class="s2">&quot;matched&quot;</span><span class="p">,</span>   <span class="c1"># Do NOT change the status</span>
+    <span class="n">TAs_apps_path</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span>
     <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;cleaned_combined_df.csv&quot;</span> 
 <span class="p">)</span>
 </pre></div>
@@ -488,13 +552,22 @@ During this process, the function provides detailed feedback:</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Daily%20surveys_Students.html"
+       href="Imports%20%26%20Loading%20set%20up.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Imports set up</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Daily%20surveys_Students.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Students Daily Surveys: Key Analysis Questions</p>
       </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -515,10 +588,9 @@ During this process, the function provides detailed feedback:</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-weekday-column">Add the “WeekDay” Column:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-all-dataframes">Combine All DataFrames:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-tas-using-the-tas-apps-dataset">Validate TAs Using the TAs_apps Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-students-uid">Validate Students UID</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-duplicate-entries">Remove Duplicate Entries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-cleaned-dataset">Save the Cleaned Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#call-the-function">Call the function</a></li>
 </ul>
   </nav></div>
 
