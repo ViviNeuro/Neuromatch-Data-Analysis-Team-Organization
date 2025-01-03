@@ -12,5 +12,8 @@ parts:
 - caption: Cleaning and Analyses
   chapters:
   - file: WorkTogether/Imports & Loading set up
+    title: Imports & Loading set up
+  - file: Daily surveys_Students_Cleaning
   - file: WorkTogether/Daily surveys_Students
+    title: Students Daily Surveys, Key Analysis Questions
   - file: WorkTogether/Daily surveys_TAs
