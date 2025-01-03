@@ -1,6 +1,6 @@
 # Daily Survey Cleaning for TAs
 
-After [imports and loading set up](), to process and analyze daily survey data collected from TAs (regular, project, and lead), you need to clean the data using the function provided below. 
+After [imports and loading set up](), to process and analyze daily survey data collected from students, you need to clean the data using the function provided below. 
 This function ensures the data is accurate and relevant for analysis by performing the following steps:
 
 ## Add the "WeekDay" Column:
@@ -9,26 +9,26 @@ Each survey file corresponds to data collected for a specific week and day. The 
 ## Combine All DataFrames:
 The individual DataFrames for each survey file are merged into a single, comprehensive DataFrame called `combined_df`. This consolidated dataset simplifies and accelerates analysis across all days and weeks.
 
-## Validate TAs Using the TAs_apps Dataset
-To ensure that only matched TAs for the current year and course are included, the function verifies that all `uid` values in the survey data match the `unique_id` values in the TAs_apps dataset.
+## Validate Students UID 
+To ensure that only matched students for the current year and course are included, the function verifies that all `uid` values in the survey data match the `unique_id` values in the `Students_ReceivedApp_from2021` dataset.
 
-The TAs_apps dataset contains:
+The `Students_ReceivedApp_from2021` dataset contains:
 
 - `course_id:` Identifies the specific course (e.g., course_id = 11).
-- `status:` Filters TAs by application status (e.g., status = "matched").
+- `status:` Filters students by application status (e.g., status = "matched").
 
-Rows with uid values not found in the filtered TAs_apps dataset are removed, ensuring the dataset contains only matched and valied entries for the specified course.
+Rows with uid values not found in the filtered `Students_ReceivedApp_from2021` dataset are removed, ensuring the dataset contains only matched and valied entries for the specified course.
 
 [Please use this document to check the course_id number of interest](https://docs.google.com/document/d/1OUPMUGDOYEmp7Znp4ZrBJSi_-vHU0yBH/edit#heading=h.gjdgxs).
 
 ## Remove Duplicate Entries
-Duplicate rows based on a combination of WeekDay and uid are identified and removed. Only the first occurrence of each unique combination is retained, ensuring that each TA has a single entry per day.
+Duplicate rows based on a combination of WeekDay and uid are identified and removed. Only the first occurrence of each unique combination is retained, ensuring that each student has a single entry per day.
 
 ## Save the Cleaned Dataset 
 The final cleaned dataset is saved as a CSV file (default: `cleaned_combined_df.csv`).
 During this process, the function provides detailed feedback:
 
-- Lists `uid` values in the survey data that are not in the `TAs_apps` dataset.
+- Lists `uid` values in the survey data that are not in the `Students_ReceivedApp_from2021` dataset.
 - Reports the number of duplicates identified and removed.
 
 
@@ -59,18 +59,18 @@ def clean_and_combine_data(dataframes_dict, TAs_apps_path, course_id, status, ou
     print('#' * 100)
     print(' ')
 
-    # Step 3: Load TAs_apps and filter by course_id and status
-    TAs_apps = pd.read_csv(TAs_apps_path)
-    TAs_apps_filtered = TAs_apps[(TAs_apps['course_id'] == course_id) & (TAs_apps['status'] == status)]
-    print(f"Filtered TAs_apps shape: {TAs_apps_filtered.shape}")
+    # Step 3: Load ST_apps and filter by course_id and status
+    ST_apps = pd.read_csv(ST_apps_path)
+    ST_apps_filtered = ST_apps[(ST_apps['course_id'] == course_id) & (ST_apps['status'] == status)]
+    print(f"Filtered ST_apps shape: {ST_apps_filtered.shape}")
     print('#' * 100)
     print(' ')
 
     # Step 4: Check that all UID in the new df are present in TA_apps (for the specific course and status that will be specified)
-    missing_values = combined_df.loc[~combined_df['uid'].isin(TAs_apps_filtered['unique_id']), 'uid']
+    missing_values = combined_df.loc[~combined_df['uid'].isin(ST_apps_filtered['unique_id']), 'uid']
     if not missing_values.empty:
-        print("Values in combined_df['uid'] not found in TAs_apps_filtered['unique_id']:", missing_values.tolist())
-        combined_df = combined_df[combined_df['uid'].isin(TAs_apps_filtered['unique_id'])]
+        print("Values in combined_df['uid'] not found in ST_apps_filtered['unique_id']:", missing_values.tolist())
+        combined_df = combined_df[combined_df['uid'].isin(ST_apps_filtered['unique_id'])]
         print("Removed rows with missing UIDs. New shape:", combined_df.shape)
         print('#' * 100)
         print(' ')
@@ -98,7 +98,7 @@ def clean_and_combine_data(dataframes_dict, TAs_apps_path, course_id, status, ou
 #Specify the path to the TAs_apps dataset, course ID, and status:
 combined_df = clean_and_combine_data(
     dataframes_dict=dataframes_dict,
-    TAs_apps_path="/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv", # to be updated in 2025
+    ST_apps_path="/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv", # to be updated in 2025
     course_id=11,       # Specify the course_id number of interest
     status="matched",   # Do NOT change the status
     output_file="cleaned_combined_df.csv" 
