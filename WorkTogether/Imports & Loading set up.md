@@ -1,4 +1,6 @@
-# Imports set up
+# Imports & Loading set up
+
+## Imports set up
 
 ---
 All datasets should be cleaned in the same way and throught the notebook you will see how the cleaning function will be shaped for cleaning daily surveys for TAs, students, enrolment and post course survey. Please follow the pipelines created. 
@@ -30,7 +32,7 @@ pd.set_option('display.float_format', lambda x: '%.2f' % x)
 pd.set_option('display.max_columns', 100)
 
 ```
-# Loading set up
+## Loading set up
 
 **Data Loading** will be our second section. We use Google Drive to load datasets. 
 
