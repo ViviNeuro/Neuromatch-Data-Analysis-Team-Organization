@@ -9,7 +9,7 @@ parts:
   - file: WorkTogether/Accessing and Analyzing the Data
   - file: WorkTogether/Collaboration Guidelines
   - file: WorkTogether/Understanding the Datasets
-- caption: Cleaning and Analyses
+- caption: Cleaning and Daily Surveys Analyses
   chapters:
   - file: WorkTogether/Imports & Loading set up
     title: Imports & Loading set up
@@ -21,3 +21,6 @@ parts:
     title: TAs Daily Surveys - Cleaning 
   - file: WorkTogether/Daily surveys_TAs
     title: TAs Daily Surveys - Key Analysis Questions
+- caption: Enrolment and Post Course
+  chapters:
+  - file: E&P/Enrolment

@@ -33,7 +33,13 @@ During this process, the function provides detailed feedback:
 
 
 ```python
-def clean_and_combine_data(dataframes_dict, TAs_apps_path, course_id, status, output_file='combined_df.csv'):
+def clean_and_combine_data(
+    dataframes_dict, 
+    TAs_apps_path, 
+    course_id, status, 
+    ST_apps_path, 
+    output_file='combined_df.csv'
+):
     """
     Cleans and combines dataframes, checks UID validity, handles duplicates, and saves the final combined dataframe.
 
@@ -42,6 +48,7 @@ def clean_and_combine_data(dataframes_dict, TAs_apps_path, course_id, status, ou
     - TAs_apps_path: Path to the TAs_apps dataset CSV file.
     - course_id: Course ID to filter the TAs_apps dataset.
     - status: Status to filter the TAs_apps dataset.
+    - ST_apps_path: Path to the ST_apps dataset CSV file.
     - output_file: Filename to save the cleaned combined dataframe (default: 'combined_df.csv').
     """
 
