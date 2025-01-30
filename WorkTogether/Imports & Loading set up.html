@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Imports set up &#8212; Academies Data Analyses</title>
+    <title>Imports &amp; Loading set up &#8212; Academies Data Analyses</title>
   
   
   
@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -179,14 +179,17 @@
 <li class="toctree-l1"><a class="reference internal" href="Collaboration%20Guidelines.html">Collaboration Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Understanding%20the%20Datasets.html">Understanding the Datasets</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cleaning and Analyses</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cleaning and Daily Surveys Analyses</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Imports set up</a></li>
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Imports &amp; Loading set up</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_Students_Cleaning.html">Students Daily Surveys - Cleaning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_Students.html">Students Daily Surveys - Key Analysis Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_TAs_Cleaning.html">TAs Daily Surveys - Cleaning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_TAs.html">TAs Daily Surveys - Key Analysis Questions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Enrolment and Post Course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../E%26P/Enrolment.html">Enrolment</a></li>
 </ul>
 
     </div>
@@ -322,7 +325,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Imports set up</h1>
+    <h1>Imports & Loading set up</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -332,10 +335,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Imports set up</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-set-up">Loading set up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-set-up">Imports set up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-set-up">Loading set up</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -346,25 +348,27 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="imports-set-up">
-<h1>Imports set up<a class="headerlink" href="#imports-set-up" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="imports-loading-set-up">
+<h1>Imports &amp; Loading set up<a class="headerlink" href="#imports-loading-set-up" title="Link to this heading">#</a></h1>
+<section id="imports-set-up">
+<h2>Imports set up<a class="headerlink" href="#imports-set-up" title="Link to this heading">#</a></h2>
 <hr class="docutils" />
 <p>All datasets should be cleaned in the same way and throught the notebook you will see how the cleaning function will be shaped for cleaning daily surveys for TAs, students, enrolment and post course survey. Please follow the pipelines created.</p>
 <hr class="docutils" />
 <p>At the top of every notebook, we define an <strong>Import section</strong> where all necessary packages and libraries should be imported. This ensures that all dependencies are loaded at the beginning of the notebook, making it easy to track what packages are in use.</p>
 <p>Below are some recommended packages and configurations that enhance data analysis and visualization quality:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General imports</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>  <span class="c1"># For data manipulation and analysis</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>   <span class="c1"># For numerical operations</span>
-<span class="kn">import</span> <span class="nn">glob</span>          <span class="c1"># For file searching</span>
-<span class="kn">import</span> <span class="nn">re</span>            <span class="c1"># For pattern matching</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>  <span class="c1"># For data manipulation and analysis</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>   <span class="c1"># For numerical operations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>          <span class="c1"># For file searching</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>            <span class="c1"># For pattern matching</span>
 
 <span class="c1"># Visualization imports</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># Basic plotting</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>            <span class="c1"># Statistical data visualization</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>  <span class="c1"># Basic plotting</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>            <span class="c1"># Statistical data visualization</span>
 
 <span class="c1"># Display high-quality plots in SVG format</span>
-<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 <span class="n">display</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>  <span class="c1"># Recommended for better plot quality</span>
 
 <span class="c1"># to restrict the float value to 2 decimal places</span>
@@ -376,15 +380,15 @@
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="loading-set-up">
-<h1>Loading set up<a class="headerlink" href="#loading-set-up" title="Link to this heading">#</a></h1>
+<section id="loading-set-up">
+<h2>Loading set up<a class="headerlink" href="#loading-set-up" title="Link to this heading">#</a></h2>
 <p><strong>Data Loading</strong> will be our second section. We use Google Drive to load datasets.</p>
 <p>The code below mounts Google Drive, finds all CSV files with a specified prefix in a given folder, and loads each CSV file into a dictionary of DataFrames for easy access.</p>
 <p>Instructions:</p>
 <ol class="arabic simple">
 <li><p>Mount Google Drive to access files directly from your Drive.</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span><span class="p">,</span> <span class="n">files</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">drive</span><span class="p">,</span> <span class="n">files</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -417,6 +421,7 @@
 <span class="nb">len</span><span class="p">(</span><span class="n">dataframes_dict</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -484,10 +489,9 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Imports set up</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-set-up">Loading set up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-set-up">Imports set up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-set-up">Loading set up</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
