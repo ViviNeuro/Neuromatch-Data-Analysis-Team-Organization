@@ -9,6 +9,7 @@ parts:
   - file: WorkTogether/Accessing and Analyzing the Data
   - file: WorkTogether/Collaboration Guidelines
   - file: WorkTogether/Understanding the Datasets
+  - file: WorkTogether/Standardization Guidelines
 - caption: Cleaning and Daily Surveys Analyses
   chapters:
   - file: WorkTogether/Imports & Loading set up
