@@ -179,7 +179,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Collaboration%20Guidelines.html">Collaboration Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Understanding%20the%20Datasets.html">Understanding the Datasets</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cleaning and Daily Surveys Analyses</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Daily Surveys Preprocessing</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Imports%20%26%20Loading%20set%20up.html">Imports &amp; Loading set up</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Daily%20surveys_Students_Cleaning.html">Students Daily Surveys - Cleaning</a></li>
@@ -190,6 +190,10 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Enrolment and Post Course</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../E%26P/Enrolment.html">Enrolment</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Template/Students%20Daily%20Surveys%20Template.html">Students Daily Surveys Template</a></li>
 </ul>
 
     </div>
@@ -417,23 +421,59 @@ During this process, the function provides detailed feedback:</p>
     <span class="c1"># Step 2: Combine all DataFrames</span>
     <span class="n">combined_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes_dict</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined DataFrame shape: </span><span class="si">{</span><span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 
     <span class="c1"># Step 3: Load TAs_apps and filter by course_id and status</span>
     <span class="n">TAs_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">TAs_apps_path</span><span class="p">)</span>
     <span class="n">TAs_apps_filtered</span> <span class="o">=</span> <span class="n">TAs_apps</span><span class="p">[(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">course_id</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">status</span><span class="p">)]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filtered TAs_apps shape: </span><span class="si">{</span><span class="n">TAs_apps_filtered</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Filtered TAs_apps dataset for course of interest and TA status = macthed&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of this dataset is </span><span class="si">{</span><span class="n">TAs_apps_filtered</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 
     <span class="c1"># Step 4: Check that all UID in the new df are present in TA_apps (for the specific course and status that will be specified)</span>
     <span class="n">missing_values</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]),</span> <span class="s1">&#39;uid&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values in combined_df[&#39;uid&#39;] not found in TAs_apps_filtered[&#39;unique_id&#39;]:&quot;</span><span class="p">,</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="c1"># print(f&quot;{len(missing_values)} are not found in the TA_apps dataset filtered for matched and course_id&quot;)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[WARNING]: </span><span class="si">{</span><span class="n">missing_values</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> unique_id are not found in the TA_apps dataset filtered for matched and course_id&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;List:&quot;</span><span class="p">,</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+        <span class="c1"># 4A: Check these missing UIDs in the FULL ST_apps</span>
+        <span class="n">ST_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ST_apps_path</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Checking the students dataset for these missing UIDs...&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;       They may exist under different statuses or different courses&quot;</span><span class="p">)</span>
+        <span class="n">missing_in_ST_full</span> <span class="o">=</span> <span class="n">ST_apps</span><span class="p">[</span><span class="n">ST_apps</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">missing_values</span><span class="p">)]</span>
+        <span class="n">found_uids_ST</span> <span class="o">=</span> <span class="n">missing_in_ST_full</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">found_uids_ST</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Some of the missing UIDs were found in the students dataset:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">found_uids_ST</span><span class="p">:</span>
+                <span class="n">uid_rows</span> <span class="o">=</span> <span class="n">missing_in_ST_full</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                    <span class="n">missing_in_ST_full</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">uid</span><span class="p">,</span>
+                    <span class="p">[</span><span class="s1">&#39;application_status&#39;</span><span class="p">,</span> <span class="s1">&#39;course_id&#39;</span><span class="p">]</span>
+                <span class="p">]</span>
+                <span class="n">statuses</span> <span class="o">=</span> <span class="n">uid_rows</span><span class="p">[</span><span class="s1">&#39;application_status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+                <span class="n">course_ids</span> <span class="o">=</span> <span class="n">uid_rows</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  UID = </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">, status = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">statuses</span><span class="p">)</span><span class="si">}</span><span class="s2">, course_id = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">course_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Count the number of rows before filtering</span>
+        <span class="n">original_count</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Count the number of rows that will remain after filtering</span>
+        <span class="n">remaining_count</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Calculate the number of rows that will be removed</span>
+        <span class="n">removed_count</span> <span class="o">=</span> <span class="n">original_count</span> <span class="o">-</span> <span class="n">remaining_count</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of rows to be removed: </span><span class="si">{</span><span class="n">removed_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
         <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">])]</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed rows with missing UIDs. New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 
     <span class="c1"># Step 5: Check for duplicates within each WeekDay and UID combination</span>
@@ -443,7 +483,7 @@ During this process, the function provides detailed feedback:</p>
         <span class="c1">#print(len(duplicates))</span>
         <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed duplicates. New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 
     <span class="c1"># Step 6: Save the cleaned DataFrame to CSV</span>
@@ -458,11 +498,12 @@ During this process, the function provides detailed feedback:</p>
 <h2>Call the function<a class="headerlink" href="#call-the-function" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Specify the path to the TAs_apps dataset, course ID, and status:</span>
 <span class="n">combined_df</span> <span class="o">=</span> <span class="n">clean_and_combine_data</span><span class="p">(</span>
-    <span class="n">dataframes_dict</span><span class="o">=</span><span class="n">dataframes_dict</span><span class="p">,</span>
-    <span class="n">TAs_apps_path</span><span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
-    <span class="n">course_id</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>       <span class="c1"># Specify the course_id number of interest</span>
-    <span class="n">status</span><span class="o">=</span><span class="s2">&quot;matched&quot;</span><span class="p">,</span>   <span class="c1"># Do NOT change the status</span>
-    <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;cleaned_combined_df.csv&quot;</span> 
+    <span class="n">dataframes_dict</span> <span class="o">=</span><span class="n">dataframes_dict</span><span class="p">,</span>
+    <span class="n">TAs_apps_path</span>   <span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
+    <span class="n">course_id</span>       <span class="o">=</span><span class="mi">12</span><span class="p">,</span>       <span class="c1"># Specify the course_id number of interest</span>
+    <span class="n">status</span>          <span class="o">=</span><span class="s2">&quot;matched&quot;</span><span class="p">,</span>   <span class="c1"># Do NOT change the status</span>
+    <span class="n">ST_apps_path</span>    <span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
+    <span class="n">output_file</span>     <span class="o">=</span><span class="s2">&quot;cleaned_combined_df.csv&quot;</span> 
 <span class="p">)</span>
 </pre></div>
 </div>

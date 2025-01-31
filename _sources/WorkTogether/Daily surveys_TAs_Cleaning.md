@@ -63,23 +63,59 @@ def clean_and_combine_data(
     # Step 2: Combine all DataFrames
     combined_df = pd.concat(dataframes_dict.values(), ignore_index=True)
     print(f"Combined DataFrame shape: {combined_df.shape}")
-    print('#' * 100)
+    print('-' * 80)
     print(' ')
 
     # Step 3: Load TAs_apps and filter by course_id and status
     TAs_apps = pd.read_csv(TAs_apps_path)
     TAs_apps_filtered = TAs_apps[(TAs_apps['course_id'] == course_id) & (TAs_apps['status'] == status)]
-    print(f"Filtered TAs_apps shape: {TAs_apps_filtered.shape}")
-    print('#' * 100)
+    print("[INFO] Filtered TAs_apps dataset for course of interest and TA status = macthed")
+    print(f"The shape of this dataset is {TAs_apps_filtered.shape}")
+    print('-' * 80)
     print(' ')
 
     # Step 4: Check that all UID in the new df are present in TA_apps (for the specific course and status that will be specified)
     missing_values = combined_df.loc[~combined_df['uid'].isin(TAs_apps_filtered['unique_id']), 'uid']
     if not missing_values.empty:
-        print("Values in combined_df['uid'] not found in TAs_apps_filtered['unique_id']:", missing_values.tolist())
+        # print(f"{len(missing_values)} are not found in the TA_apps dataset filtered for matched and course_id")
+        print(f"[WARNING]: {missing_values.nunique()} unique_id are not found in the TA_apps dataset filtered for matched and course_id")
+        print("List:", missing_values.tolist())
+        print('-' * 80)
+        print(' ')
+
+        # 4A: Check these missing UIDs in the FULL ST_apps
+        ST_apps = pd.read_csv(ST_apps_path)
+        print("[INFO] Checking the students dataset for these missing UIDs...")
+        print("       They may exist under different statuses or different courses")
+        missing_in_ST_full = ST_apps[ST_apps['unique_id'].isin(missing_values)]
+        found_uids_ST = missing_in_ST_full['unique_id'].unique()
+
+        if found_uids_ST.size > 0:
+            print("[INFO] Some of the missing UIDs were found in the students dataset:")
+            for uid in found_uids_ST:
+                uid_rows = missing_in_ST_full.loc[
+                    missing_in_ST_full['unique_id'] == uid,
+                    ['application_status', 'course_id']
+                ]
+                statuses = uid_rows['application_status'].unique()
+                course_ids = uid_rows['course_id'].unique()
+                print(f"  UID = {uid}, status = {list(statuses)}, course_id = {list(course_ids)}")
+
+        # Count the number of rows before filtering
+        original_count = combined_df.shape[0]
+
+        # Count the number of rows that will remain after filtering
+        remaining_count = combined_df[combined_df['uid'].isin(TAs_apps_filtered['unique_id'])].shape[0]
+
+        # Calculate the number of rows that will be removed
+        removed_count = original_count - remaining_count
+        print('-' * 80)
+        print(f"Number of rows to be removed: {removed_count}")
+        print('-' * 80)
+        print(' ')
         combined_df = combined_df[combined_df['uid'].isin(TAs_apps_filtered['unique_id'])]
         print("Removed rows with missing UIDs. New shape:", combined_df.shape)
-        print('#' * 100)
+        print('-' * 80)
         print(' ')
 
     # Step 5: Check for duplicates within each WeekDay and UID combination
@@ -89,7 +125,7 @@ def clean_and_combine_data(
         #print(len(duplicates))
         combined_df = combined_df.drop_duplicates(subset=['WeekDay', 'uid'], keep='first')
         print("Removed duplicates. New shape:", combined_df.shape)
-        print('#' * 100)
+        print('-' * 80)
         print(' ')
 
     # Step 6: Save the cleaned DataFrame to CSV
@@ -104,10 +140,11 @@ def clean_and_combine_data(
 ```python
 #Specify the path to the TAs_apps dataset, course ID, and status:
 combined_df = clean_and_combine_data(
-    dataframes_dict=dataframes_dict,
-    TAs_apps_path="/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv", # to be updated in 2025
-    course_id=11,       # Specify the course_id number of interest
-    status="matched",   # Do NOT change the status
-    output_file="cleaned_combined_df.csv" 
+    dataframes_dict =dataframes_dict,
+    TAs_apps_path   ="/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv", # to be updated in 2025
+    course_id       =12,       # Specify the course_id number of interest
+    status          ="matched",   # Do NOT change the status
+    ST_apps_path    ="/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv", # to be updated in 2025
+    output_file     ="cleaned_combined_df.csv" 
 )
 ```
