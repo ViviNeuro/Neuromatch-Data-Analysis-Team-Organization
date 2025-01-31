@@ -10,7 +10,7 @@ parts:
   - file: WorkTogether/Collaboration Guidelines
   - file: WorkTogether/Understanding the Datasets
   - file: WorkTogether/Standardization Guidelines
-- caption: Cleaning and Daily Surveys Analyses
+- caption: Daily Surveys Preprocessing
   chapters:
   - file: WorkTogether/Imports & Loading set up
     title: Imports & Loading set up
@@ -25,3 +25,6 @@ parts:
 - caption: Enrolment and Post Course
   chapters:
   - file: E&P/Enrolment
+- caption: Template
+  chapters:
+  - file: Template/Students Daily Surveys Template

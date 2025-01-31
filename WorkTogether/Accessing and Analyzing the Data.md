@@ -12,7 +12,7 @@ If you do not have access, please reach out to **Viviana Greco** or **Courtney D
 
 ---
 
-## 2. **Use Google Colab to Access Google Drive**  
+## 2. Use Google Colab to Access Google Drive  
 Using Google Colab, follow these steps to mount Google Drive and access the data:
 
 1. First, add a shortcut of the **Academies_DataAnalysis** folder to your Drive:
