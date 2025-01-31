@@ -70,9 +70,9 @@ def clean_and_combine_data(
 
     # Step 2: Combine all DataFrames
     combined_df = pd.concat(dataframes_dict.values(), ignore_index=True)
-    print(f"Combined DataFrame shape: {combined_df.shape}")
-    print('#' * 100)
-    print()
+    print("[INFO] Successfully combined all dataframes.")
+    print(f"       Combined DataFrame shape: {combined_df.shape}")
+    print('-' * 80)
 
     # Step 3: Load ST_apps (full) and TAs_apps, then filter ST_apps by course_id and status
     ST_apps = pd.read_csv(ST_apps_path)
@@ -82,8 +82,9 @@ def clean_and_combine_data(
         (ST_apps['course_id'] == course_id) &
         (ST_apps['application_status'] == status)
     ]
-    print(f"Filtered ST_apps shape: {ST_apps_filtered.shape}")
-    print('#' * 100)
+    print("[INFO] Filtered ST_apps based on specified course_id and status.")
+    print(f"       Filtered ST_apps shape: {ST_apps_filtered.shape}")
+    print('-' * 80)
     print()
 
     # Step 4: Identify UIDs in combined_df that are NOT in ST_apps_filtered
@@ -92,15 +93,19 @@ def clean_and_combine_data(
     ].unique()
 
     if missing_values.size > 0:
-        print(f"There are {len(missing_values)} values in combined_df['uid'] NOT found in ST_apps_filtered['unique_id']:")
-        print(missing_values)
+        print(f"[WARNING] Found {len(missing_values)} UID(s) in combined_df not present in ST_apps_filtered.")
+        print("          Missing UIDs:")
+        print("          ", missing_values)
+        print('-' * 80)
 
         # 4A: Check these missing UIDs in the FULL ST_apps
+        print("[INFO] Checking the FULL(not filtered) ST_apps dataset for these missing UIDs...")
+        print("       They may exist under different statuses or different courses")
         missing_in_ST_full = ST_apps[ST_apps['unique_id'].isin(missing_values)]
         found_uids_ST = missing_in_ST_full['unique_id'].unique()
 
         if found_uids_ST.size > 0:
-            print("\n—> Missing UIDs found in the FULL ST_apps:")
+            print("[INFO] Some of the missing UIDs were found in the FULL ST_apps dataset:")
             for uid in found_uids_ST:
                 uid_rows = missing_in_ST_full.loc[
                     missing_in_ST_full['unique_id'] == uid,
@@ -110,18 +115,26 @@ def clean_and_combine_data(
                 course_ids = uid_rows['course_id'].unique()
                 print(f"  UID = {uid}, status = {list(statuses)}, course_id = {list(course_ids)}")
 
+
         # 4B: After ST check, see which UIDs remain missing
+        print('-' * 80)
+        print()
+        print("[INFO] Determining which UIDs remain missing.")
+        print("       This is done by calculating: set(missing_values) - set(found_uids_ST).")
         still_missing_after_ST = set(missing_values) - set(found_uids_ST)
         if len(still_missing_after_ST) > 0:
-            print(f"\n—> These {len(still_missing_after_ST)} UIDs are still missing after checking FULL ST_apps:")
-            print(still_missing_after_ST)
+            print("[WARNING] The following UIDs are still missing:")
+            print(f"          {still_missing_after_ST}")
+            print('-' * 80)
+            print()
 
             # Now check the still-missing UIDs in TAs_apps
+            print("[INFO] Checking the TA dataset as maybe these uids are associated with TAs")
             missing_in_TAs = TAs_apps[TAs_apps['unique_id'].isin(still_missing_after_ST)]
             found_uids_TAs = missing_in_TAs['unique_id'].unique()
 
             if found_uids_TAs.size > 0:
-                print("\n—> Missing UIDs found in the TAs_apps dataset:")
+                print("[WARNING] The following UIDs are found in the TAs_apps dataset:")
                 for uid in found_uids_TAs:
                     uid_rows = missing_in_TAs.loc[
                         missing_in_TAs['unique_id'] == uid,
@@ -132,33 +145,37 @@ def clean_and_combine_data(
                     print(f"  UID = {uid}, status = {list(statuses)}, course_id = {list(course_ids)}")
 
             # UIDs not found anywhere (neither in full ST nor TAs)
+            print('-' * 80)
+            print()
             not_found_anywhere = still_missing_after_ST - set(found_uids_TAs)
             if not_found_anywhere:
-                print(f"\n—> The following missing {len(not_found_anywhere)} UIDs were NOT found in ST_apps_filtered, FULL ST_apps, or TAs_apps:")
-                print(not_found_anywhere)
+                print(f"[WARNING] The following {len(not_found_anywhere)} UIDs were NOT found in ST_apps_filtered, FULL ST_apps, or TAs_apps:")
+                print(f"          {not_found_anywhere}")
         else:
             # If nothing left after the ST check, skip TAs_apps checks
             found_uids_TAs = []
 
         # Finally, remove rows from combined_df that are NOT in ST_apps_filtered
+        print('-' * 80)
+        print()
         combined_df = combined_df[combined_df['uid'].isin(ST_apps_filtered['unique_id'])]
-        print("\nRemoved rows with missing UIDs that are not in the filtered list.")
+        print("[INFO] Removed rows with missing UIDs that are not in the filtered list.")
         print("New shape:", combined_df.shape)
-        print('#' * 100)
+        print('-' * 80)
         print()
 
     # Step 5: Check for duplicates within each WeekDay and UID combination
     duplicates = combined_df[combined_df.duplicated(subset=['WeekDay', 'uid'], keep=False)]
     if not duplicates.empty:
-        print(f"Duplicate rows found based on ['WeekDay', 'uid']: {len(duplicates)}")
+        print(f"[INFO] Duplicate rows found based on ['WeekDay', 'uid']: {len(duplicates)}")
         combined_df = combined_df.drop_duplicates(subset=['WeekDay', 'uid'], keep='first')
-        print("Removed duplicates. New shape:", combined_df.shape)
-        print('#' * 100)
+        print("[INFO] Removed duplicates. New shape:", combined_df.shape)
+        print('-' * 80)
         print()
 
     # Step 6: Save the cleaned DataFrame to CSV
     combined_df.to_csv(output_file, index=False)
-    print(f"Cleaned DataFrame saved to {output_file}")
+    print(f"[INFO] Cleaned DataFrame saved to {output_file}")
 
     return combined_df
 ```
@@ -169,9 +186,9 @@ def clean_and_combine_data(
 combined_df = clean_and_combine_data(
     dataframes_dict=dataframes_dict,
     ST_apps_path="/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv", # to be updated in 2025
-    course_id=11,       # Specify the course_id number of interest
+    course_id=12,       # Specify the course_id number of interest
     status="matched",   # Do NOT change the status
     TAs_apps_path = "/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv",
-    output_file="cleaned_combined_df.csv" 
+    output_file="cleaned_combined_df.csv"
 )
 ```
