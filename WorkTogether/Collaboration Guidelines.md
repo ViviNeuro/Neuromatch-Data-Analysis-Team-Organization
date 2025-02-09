@@ -6,8 +6,7 @@ To ensure everyone works efficiently and collaboratively, please follow these gu
 
 ### 1. Choose a Task  
 - Tasks are divided among volunteers and staff, with several **standard topics** available.  
-- A table with tasks and deadlines will be provided.  
-- Review the list and choose a task that aligns with your interests and expertise.  
+- Review [tasks and deadlines](https://docs.google.com/spreadsheets/d/10pIGP4_vsANPJQANaEV-faiVButsw3lHjW8UlZnhuzc/edit?gid=0#gid=0) and choose a task that aligns with your interests and expertise.  
 
 Once you’ve decided on a task:  
 - Notify **Viviana Greco** of your selection.  
@@ -20,8 +19,8 @@ Collaboration is encouraged, but please clearly define roles to **avoid duplicat
 ---
 
 ### 2. Review Task Requirements  
-- If you are unsure about your expertise or role, review the **main questions** that need to be answered for each task.  [ADD LINK]
-This will help clarify the task’s goals and your potential contribution.
+- If you are unsure about your expertise or role, review the **main questions** provided for each task in the **Daily Survey Preprocessing Section**.
+This will clarify the task objectives and help you understand where you can contribute.
 
 ---
 
