@@ -28,3 +28,4 @@ parts:
 - caption: Template
   chapters:
   - file: Template/Students Daily Surveys Template
+  - file: Template/TAs Daily Surveys Template
