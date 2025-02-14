@@ -34,10 +34,11 @@ During this process, the function provides detailed feedback:
 
 ```python
 def clean_and_combine_data(
-    dataframes_dict, 
-    TAs_apps_path, 
-    course_id, status, 
-    ST_apps_path, 
+    dataframes_dict,
+    TAs_apps_path,
+    course_id, 
+    status,
+    ST_apps_path,
     output_file='combined_df.csv'
 ):
     """
@@ -85,8 +86,7 @@ def clean_and_combine_data(
 
         # 4A: Check these missing UIDs in the FULL ST_apps
         ST_apps = pd.read_csv(ST_apps_path)
-        print("[INFO] Checking the students dataset for these missing UIDs...")
-        print("       They may exist under different statuses or different courses")
+        print("[INFO] Checking whether the unique_id not found in the list of matched TAs are associated with students unique_id...")
         missing_in_ST_full = ST_apps[ST_apps['unique_id'].isin(missing_values)]
         found_uids_ST = missing_in_ST_full['unique_id'].unique()
 
@@ -121,7 +121,7 @@ def clean_and_combine_data(
     # Step 5: Check for duplicates within each WeekDay and UID combination
     duplicates = combined_df[combined_df.duplicated(subset=['WeekDay', 'uid'], keep=False)]
     if not duplicates.empty:
-        print(f"Duplicate rows found based on ['WeekDay', 'uid']: {len(duplicates)}")
+        print(f"Duplicate entries found based on ['WeekDay', 'uid']: {len(duplicates)}")
         #print(len(duplicates))
         combined_df = combined_df.drop_duplicates(subset=['WeekDay', 'uid'], keep='first')
         print("Removed duplicates. New shape:", combined_df.shape)
@@ -145,6 +145,6 @@ combined_df = clean_and_combine_data(
     course_id       =12,       # Specify the course_id number of interest
     status          ="matched",   # Do NOT change the status
     ST_apps_path    ="/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv", # to be updated in 2025
-    output_file     ="cleaned_combined_df.csv" 
+    output_file     ="cleaned_combined_df.csv"
 )
 ```

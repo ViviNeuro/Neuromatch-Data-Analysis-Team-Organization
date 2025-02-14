@@ -194,6 +194,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Template/Students%20Daily%20Surveys%20Template.html">Students Daily Surveys Template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Template/TAs%20Daily%20Surveys%20Template.html">TAs Daily Surveys Template</a></li>
 </ul>
 
     </div>
@@ -392,10 +393,11 @@ During this process, the function provides detailed feedback:</p>
 <li><p>Reports the number of duplicates identified and removed.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">clean_and_combine_data</span><span class="p">(</span>
-    <span class="n">dataframes_dict</span><span class="p">,</span> 
-    <span class="n">TAs_apps_path</span><span class="p">,</span> 
-    <span class="n">course_id</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> 
-    <span class="n">ST_apps_path</span><span class="p">,</span> 
+    <span class="n">dataframes_dict</span><span class="p">,</span>
+    <span class="n">TAs_apps_path</span><span class="p">,</span>
+    <span class="n">course_id</span><span class="p">,</span> 
+    <span class="n">status</span><span class="p">,</span>
+    <span class="n">ST_apps_path</span><span class="p">,</span>
     <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;combined_df.csv&#39;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -443,8 +445,7 @@ During this process, the function provides detailed feedback:</p>
 
         <span class="c1"># 4A: Check these missing UIDs in the FULL ST_apps</span>
         <span class="n">ST_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ST_apps_path</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Checking the students dataset for these missing UIDs...&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;       They may exist under different statuses or different courses&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Checking whether the unique_id not found in the list of matched TAs are associated with students unique_id...&quot;</span><span class="p">)</span>
         <span class="n">missing_in_ST_full</span> <span class="o">=</span> <span class="n">ST_apps</span><span class="p">[</span><span class="n">ST_apps</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">missing_values</span><span class="p">)]</span>
         <span class="n">found_uids_ST</span> <span class="o">=</span> <span class="n">missing_in_ST_full</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 
@@ -479,7 +480,7 @@ During this process, the function provides detailed feedback:</p>
     <span class="c1"># Step 5: Check for duplicates within each WeekDay and UID combination</span>
     <span class="n">duplicates</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">duplicates</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duplicate rows found based on [&#39;WeekDay&#39;, &#39;uid&#39;]: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duplicate entries found based on [&#39;WeekDay&#39;, &#39;uid&#39;]: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="c1">#print(len(duplicates))</span>
         <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed duplicates. New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -503,7 +504,7 @@ During this process, the function provides detailed feedback:</p>
     <span class="n">course_id</span>       <span class="o">=</span><span class="mi">12</span><span class="p">,</span>       <span class="c1"># Specify the course_id number of interest</span>
     <span class="n">status</span>          <span class="o">=</span><span class="s2">&quot;matched&quot;</span><span class="p">,</span>   <span class="c1"># Do NOT change the status</span>
     <span class="n">ST_apps_path</span>    <span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
-    <span class="n">output_file</span>     <span class="o">=</span><span class="s2">&quot;cleaned_combined_df.csv&quot;</span> 
+    <span class="n">output_file</span>     <span class="o">=</span><span class="s2">&quot;cleaned_combined_df.csv&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
