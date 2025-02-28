@@ -1,48 +1,58 @@
 # TAs Daily Surveys - Cleaning
 
 After [imports and loading set up](), to process and analyze daily survey data collected from TAs (regular, project, and lead), you need to clean the data using the function provided below. 
-This function ensures the data is accurate and relevant for analysis by performing the following steps:
+This function ensures the data is accurate and relevant for analysis by performing the following processing steps:
 
-## Add the "WeekDay" Column:
-Each survey file corresponds to data collected for a specific week and day. The function extracts the `w<week_number>d<day_number>` pattern from filenames and adds it as a new column named WeekDay in the respective DataFrame. This allows you to track the day and week for each entry.
+## 1. Extracting WeekDay from Filenames:
+For each DataFrame in the `dataframes_dict`, the function uses a regular expression (`r'w\d+d\d+'`) to extract a pattern (representing "WeekDay") from the filename. This pattern is added as a new column (`WeekDay`). If the pattern is not found, a warning is printed.
 
-## Combine All DataFrames:
-The individual DataFrames for each survey file are merged into a single, comprehensive DataFrame called `combined_df`. This consolidated dataset simplifies and accelerates analysis across all days and weeks.
+## 2. Combining DataFrames:
+All DataFrames from the dictionary are concatenated into a single DataFrame (`combined_df`), and its shape is printed.
 
-## Validate TAs Using the TAs_apps Dataset
-To ensure that only matched TAs for the current year and course are included, the function verifies that all `uid` values in the survey data match the `unique_id` values in the TAs_apps dataset.
+## 3. Filtering TA Applications:
 
-The TAs_apps dataset contains:
+- Loads the TAs applications CSV file using the provided `TAs_apps_path`.
+- Filters the dataset for rows that match the specified `course_id` and `status`.
+- Prints the shape of the filtered TA dataset.
 
-- `course_id:` Identifies the specific course (e.g., course_id = 11).
-- `status:` Filters TAs by application status (e.g., status = "matched").
+## 4. Processing Certificates:
 
-Rows with uid values not found in the filtered TAs_apps dataset are removed, ensuring the dataset contains only matched and valied entries for the specified course.
+- Loads the certificates CSV file using the provided `certificates_path`.
+- Filters for rows that match the given `course_id` and have a certificate type within the set ['ta_certificate', 'project_ta_certificate', 'lead_ta_certificate'].
+- Maps each certificate type to a TA role (using a predefined mapping) and adds a new column (`TA_role`).
+- Creates mapping series (based on `unique_id`) for both TA_role and certificate_type.
+- Maps these values to the filtered TAs applications DataFrame.
 
-[Please use this document to check the course_id number of interest](https://docs.google.com/document/d/1OUPMUGDOYEmp7Znp4ZrBJSi_-vHU0yBH/edit#heading=h.gjdgxs).
+## 5. UID Validation:
 
-## Remove Duplicate Entries
-Duplicate rows based on a combination of WeekDay and uid are identified and removed. Only the first occurrence of each unique combination is retained, ensuring that each TA has a single entry per day.
+- Checks that every `uid` in `combined_df` exists in the filtered TAs applications dataset.
+- If missing UIDs are found, it reports these UIDs and checks them against the full student applications dataset (using `ST_apps_path`), printing any additional details.
+- Filters out rows in `combined_df` whose UIDs are not present in the filtered TAs applications.
 
-## Save the Cleaned Dataset 
-The final cleaned dataset is saved as a CSV file (default: `cleaned_combined_df.csv`).
-During this process, the function provides detailed feedback:
+## 6. Merging TA Information:
+Merges the filtered TA applications DataFrame (with `TA role`, `certificate type`, and `career_status` columns) into the combined DataFrame on `uid` (from combined_df) and `unique_id` (from the TA dataset).
 
-- Lists `uid` values in the survey data that are not in the `TAs_apps` dataset.
-- Reports the number of duplicates identified and removed.
+## 7. Removing Duplicate Entries:
+Checks for duplicate entries based on the combination of `WeekDay` and `uid`. If duplicates are found, only the first occurrence is kept.
+
+## 8. Saving the Output:
+The final cleaned DataFrame is saved to a CSV file with the name specified by the `output_file` parameter. A confirmation message is printed.
+
 
 
 ```python
 def clean_and_combine_data(
     dataframes_dict,
     TAs_apps_path,
-    course_id, 
+    course_id,
     status,
     ST_apps_path,
-    output_file='combined_df.csv'
-):
+    certificates_path,
+    output_file='combined_df.csv'):
+  
     """
     Cleans and combines dataframes, checks UID validity, handles duplicates, and saves the final combined dataframe.
+    Additionally, loads the certificates dataset, adds the TA_role and certificate received based on matching UIDs.
 
     Parameters:
     - dataframes_dict: Dictionary with filenames as keys and DataFrames as values.
@@ -50,6 +60,7 @@ def clean_and_combine_data(
     - course_id: Course ID to filter the TAs_apps dataset.
     - status: Status to filter the TAs_apps dataset.
     - ST_apps_path: Path to the ST_apps dataset CSV file.
+    - certificates_path: Path to the certificates dataset CSV file.
     - output_file: Filename to save the cleaned combined dataframe (default: 'combined_df.csv').
     """
 
@@ -69,21 +80,46 @@ def clean_and_combine_data(
 
     # Step 3: Load TAs_apps and filter by course_id and status
     TAs_apps = pd.read_csv(TAs_apps_path)
-    TAs_apps_filtered = TAs_apps[(TAs_apps['course_id'] == course_id) & (TAs_apps['status'] == status)]
-    print("[INFO] Filtered TAs_apps dataset for course of interest and TA status = macthed")
+    TAs_apps_filtered = TAs_apps[(TAs_apps['course_id'] == course_id) & (TAs_apps['status'] == status)].copy()
+    print("[INFO] Filtered TAs_apps dataset for course of interest and TA status = matched")
     print(f"The shape of this dataset is {TAs_apps_filtered.shape}")
     print('-' * 80)
     print(' ')
 
-    # Step 4: Check that all UID in the new df are present in TA_apps (for the specific course and status that will be specified)
+    # Load certificates dataset
+    certificates = pd.read_csv(certificates_path)
+
+    # Filter certificates for course_id and certificate type
+    certificates = certificates[(certificates['course_id'] == course_id) & (certificates['certificate_type'].isin(['ta_certificate', 'project_ta_certificate', 'lead_ta_certificate']))]
+    print(f"[INFO] Filtered certificates dataset for course_id = {course_id} and certificate_type")
+    print(f"Certificates shape: {certificates.shape}")
+    print('-' * 80)
+    print(' ')
+
+    # Create a new column 'TA_role' based on certificate_type values
+    mapping = {
+        'ta_certificate': 'Regular TA',
+        'project_ta_certificate': 'Project TA',
+        'lead_ta_certificate': 'Lead TA'}
+
+    certificates['TA_role'] = certificates['certificate_type'].map(mapping)
+
+    # Create mapping series for TA_role and certificate_type using unique_id as index
+    TA_role_mapping = certificates.set_index('unique_id')['TA_role']
+    certificate_type_mapping = certificates.set_index('unique_id')['certificate_type']
+
+    # Map the values to TAs_apps_filtered based on unique_id
+    TAs_apps_filtered['TA_role'] = TAs_apps_filtered['unique_id'].map(TA_role_mapping)
+    TAs_apps_filtered['certificate_type'] = TAs_apps_filtered['unique_id'].map(certificate_type_mapping)
+
+    # Step 4: Check that all UID in the combined dataframe are present in TAs_apps_filtered
     missing_values = combined_df.loc[~combined_df['uid'].isin(TAs_apps_filtered['unique_id']), 'uid']
     if not missing_values.empty:
-        # print(f"{len(missing_values)} are not found in the TA_apps dataset filtered for matched and course_id")
         print(f"[WARNING]: {missing_values.nunique()} unique_id are not found in the TA_apps dataset filtered for matched and course_id")
         print("List:", missing_values.tolist())
         print('-' * 80)
         print(' ')
-
+        
         # 4A: Check these missing UIDs in the FULL ST_apps
         ST_apps = pd.read_csv(ST_apps_path)
         print("[INFO] Checking whether the unique_id not found in the list of matched TAs are associated with students unique_id...")
@@ -118,11 +154,15 @@ def clean_and_combine_data(
         print('-' * 80)
         print(' ')
 
+    combined_df = combined_df.merge(
+        TAs_apps_filtered[['unique_id','TA_role', 'certificate_type', 'career_status']],
+        left_on='uid',right_on='unique_id',
+        how='left')
+
     # Step 5: Check for duplicates within each WeekDay and UID combination
     duplicates = combined_df[combined_df.duplicated(subset=['WeekDay', 'uid'], keep=False)]
     if not duplicates.empty:
         print(f"Duplicate entries found based on ['WeekDay', 'uid']: {len(duplicates)}")
-        #print(len(duplicates))
         combined_df = combined_df.drop_duplicates(subset=['WeekDay', 'uid'], keep='first')
         print("Removed duplicates. New shape:", combined_df.shape)
         print('-' * 80)
@@ -133,18 +173,18 @@ def clean_and_combine_data(
     print(f"Cleaned DataFrame saved to {output_file}")
 
     return combined_df
+a
 ```
 
 ## Call the function
 
 ```python
-#Specify the path to the TAs_apps dataset, course ID, and status:
 combined_df = clean_and_combine_data(
-    dataframes_dict =dataframes_dict,
-    TAs_apps_path   ="/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv", # to be updated in 2025
-    course_id       =12,       # Specify the course_id number of interest
-    status          ="matched",   # Do NOT change the status
-    ST_apps_path    ="/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv", # to be updated in 2025
-    output_file     ="cleaned_combined_df.csv"
-)
+              dataframes_dict   = dataframes_dict,
+              TAs_apps_path     = "/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv", # to be updated in 2025
+              course_id         = 13,       # Specify the course_id number of interest
+              status            = "matched",   # Do NOT change the status
+              ST_apps_path      = "/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv", # to be updated in 2025
+              certificates_path = "/content/drive/MyDrive/Academies_DataAnalysis/General/Certificate2024.csv", # to be updated in 202
+              output_file       = "cleaned_combined_df.csv")
 ```
