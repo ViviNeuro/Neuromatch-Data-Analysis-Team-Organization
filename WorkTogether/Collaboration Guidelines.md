@@ -36,7 +36,7 @@ For example:
 `attendance_analysis_2024_viviana.ipynb`
 
 ### 4. Communicate Effectively
-Use the `#a-24-evaluation` Slack channel as the main communication platform.
+Use the `#a-25-evaluation` Slack channel as the main communication platform.
 If you encounter any roadblocks, need clarification, or require assistance ask your questions directly in the Slack channel!
 <br>
 Collaboration and quick communication will ensure smoother progress for everyone.

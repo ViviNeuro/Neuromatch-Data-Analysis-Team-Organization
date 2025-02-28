@@ -10,10 +10,10 @@ To use this pipeline in your own analysis, follow these steps:
 2. Click "File" -> "Save a copy in Drive" to create an editable version.
 3. Modify the notebook as needed to suit your specific dataset and research questions.
 4. Run the notebook to clean and analyze your data.
-📂 [Open the notebook in Google Colab:](https://colab.research.google.com/drive/1mAYcU3_FclfEun6G-Q0hESIzRJKFZat1)
+📂 [Open the notebook in Google Colab](https://colab.research.google.com/drive/1mAYcU3_FclfEun6G-Q0hESIzRJKFZat1)
 
 
 **Download the Template**
 If you prefer to run the analysis locally in Jupyter Notebook, you can download the .ipynb file:
 
-📥 [Download the Template Notebook](https://github.com/ViviNeuro/Neuromatch-Data-Analysis-Team-Organization/raw/main/Template/Students_Daily_Surveys_Template.ipynb)
+📥 [Download the Template Notebook](https://github.com/ViviNeuro/Neuromatch-Data-Analysis-Team-Organization/blob/main/Template/Students_Daily_Surveys_Template.ipynb)
