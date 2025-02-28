@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -39,11 +37,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/cisp-style.css?v=9ff8970b" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -69,7 +66,6 @@
     <link rel="prev" title="Students Daily Surveys: Key Analysis Questions" href="Daily%20surveys_Students.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -85,8 +81,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -94,6 +101,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -101,8 +109,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -118,8 +126,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -149,7 +156,7 @@
     
     
     <img src="../_static/Sciencematch.png" class="logo__image only-light" alt=""/>
-    <img src="../_static/Sciencematch.png" class="logo__image only-dark pst-js-only" alt=""/>
+    <script>document.write(`<img src="../_static/Sciencematch.png" class="logo__image only-dark" alt=""/>`);</script>
   
   
     <p class="title logo__title">Academies Data Analyses</p>
@@ -163,6 +170,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -203,14 +211,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -307,16 +310,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -340,11 +351,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-weekday-column">Add the “WeekDay” Column:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-all-dataframes">Combine All DataFrames:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-tas-using-the-tas-apps-dataset">Validate TAs Using the TAs_apps Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-duplicate-entries">Remove Duplicate Entries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-cleaned-dataset">Save the Cleaned Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-weekday-from-filenames">1. Extracting WeekDay from Filenames:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-dataframes">2. Combining DataFrames:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-ta-applications">3. Filtering TA Applications:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#processing-certificates">4. Processing Certificates:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uid-validation">5. UID Validation:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-ta-information">6. Merging TA Information:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-duplicate-entries">7. Removing Duplicate Entries:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-output">8. Saving the Output:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#call-the-function">Call the function</a></li>
 </ul>
             </nav>
@@ -360,48 +374,64 @@
   <section class="tex2jax_ignore mathjax_ignore" id="tas-daily-surveys-cleaning">
 <h1>TAs Daily Surveys - Cleaning<a class="headerlink" href="#tas-daily-surveys-cleaning" title="Link to this heading">#</a></h1>
 <p>After <a class="reference internal" href="#"><span class="xref myst">imports and loading set up</span></a>, to process and analyze daily survey data collected from TAs (regular, project, and lead), you need to clean the data using the function provided below.
-This function ensures the data is accurate and relevant for analysis by performing the following steps:</p>
-<section id="add-the-weekday-column">
-<h2>Add the “WeekDay” Column:<a class="headerlink" href="#add-the-weekday-column" title="Link to this heading">#</a></h2>
-<p>Each survey file corresponds to data collected for a specific week and day. The function extracts the <code class="docutils literal notranslate"><span class="pre">w&lt;week_number&gt;d&lt;day_number&gt;</span></code> pattern from filenames and adds it as a new column named WeekDay in the respective DataFrame. This allows you to track the day and week for each entry.</p>
+This function ensures the data is accurate and relevant for analysis by performing the following processing steps:</p>
+<section id="extracting-weekday-from-filenames">
+<h2>1. Extracting WeekDay from Filenames:<a class="headerlink" href="#extracting-weekday-from-filenames" title="Link to this heading">#</a></h2>
+<p>For each DataFrame in the <code class="docutils literal notranslate"><span class="pre">dataframes_dict</span></code>, the function uses a regular expression (<code class="docutils literal notranslate"><span class="pre">r'w\d+d\d+'</span></code>) to extract a pattern (representing “WeekDay”) from the filename. This pattern is added as a new column (<code class="docutils literal notranslate"><span class="pre">WeekDay</span></code>). If the pattern is not found, a warning is printed.</p>
 </section>
-<section id="combine-all-dataframes">
-<h2>Combine All DataFrames:<a class="headerlink" href="#combine-all-dataframes" title="Link to this heading">#</a></h2>
-<p>The individual DataFrames for each survey file are merged into a single, comprehensive DataFrame called <code class="docutils literal notranslate"><span class="pre">combined_df</span></code>. This consolidated dataset simplifies and accelerates analysis across all days and weeks.</p>
+<section id="combining-dataframes">
+<h2>2. Combining DataFrames:<a class="headerlink" href="#combining-dataframes" title="Link to this heading">#</a></h2>
+<p>All DataFrames from the dictionary are concatenated into a single DataFrame (<code class="docutils literal notranslate"><span class="pre">combined_df</span></code>), and its shape is printed.</p>
 </section>
-<section id="validate-tas-using-the-tas-apps-dataset">
-<h2>Validate TAs Using the TAs_apps Dataset<a class="headerlink" href="#validate-tas-using-the-tas-apps-dataset" title="Link to this heading">#</a></h2>
-<p>To ensure that only matched TAs for the current year and course are included, the function verifies that all <code class="docutils literal notranslate"><span class="pre">uid</span></code> values in the survey data match the <code class="docutils literal notranslate"><span class="pre">unique_id</span></code> values in the TAs_apps dataset.</p>
-<p>The TAs_apps dataset contains:</p>
+<section id="filtering-ta-applications">
+<h2>3. Filtering TA Applications:<a class="headerlink" href="#filtering-ta-applications" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">course_id:</span></code> Identifies the specific course (e.g., course_id = 11).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">status:</span></code> Filters TAs by application status (e.g., status = “matched”).</p></li>
+<li><p>Loads the TAs applications CSV file using the provided <code class="docutils literal notranslate"><span class="pre">TAs_apps_path</span></code>.</p></li>
+<li><p>Filters the dataset for rows that match the specified <code class="docutils literal notranslate"><span class="pre">course_id</span></code> and <code class="docutils literal notranslate"><span class="pre">status</span></code>.</p></li>
+<li><p>Prints the shape of the filtered TA dataset.</p></li>
 </ul>
-<p>Rows with uid values not found in the filtered TAs_apps dataset are removed, ensuring the dataset contains only matched and valied entries for the specified course.</p>
-<p><a class="reference external" href="https://docs.google.com/document/d/1OUPMUGDOYEmp7Znp4ZrBJSi_-vHU0yBH/edit#heading=h.gjdgxs">Please use this document to check the course_id number of interest</a>.</p>
 </section>
-<section id="remove-duplicate-entries">
-<h2>Remove Duplicate Entries<a class="headerlink" href="#remove-duplicate-entries" title="Link to this heading">#</a></h2>
-<p>Duplicate rows based on a combination of WeekDay and uid are identified and removed. Only the first occurrence of each unique combination is retained, ensuring that each TA has a single entry per day.</p>
-</section>
-<section id="save-the-cleaned-dataset">
-<h2>Save the Cleaned Dataset<a class="headerlink" href="#save-the-cleaned-dataset" title="Link to this heading">#</a></h2>
-<p>The final cleaned dataset is saved as a CSV file (default: <code class="docutils literal notranslate"><span class="pre">cleaned_combined_df.csv</span></code>).
-During this process, the function provides detailed feedback:</p>
+<section id="processing-certificates">
+<h2>4. Processing Certificates:<a class="headerlink" href="#processing-certificates" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Lists <code class="docutils literal notranslate"><span class="pre">uid</span></code> values in the survey data that are not in the <code class="docutils literal notranslate"><span class="pre">TAs_apps</span></code> dataset.</p></li>
-<li><p>Reports the number of duplicates identified and removed.</p></li>
+<li><p>Loads the certificates CSV file using the provided <code class="docutils literal notranslate"><span class="pre">certificates_path</span></code>.</p></li>
+<li><p>Filters for rows that match the given <code class="docutils literal notranslate"><span class="pre">course_id</span></code> and have a certificate type within the set [‘ta_certificate’, ‘project_ta_certificate’, ‘lead_ta_certificate’].</p></li>
+<li><p>Maps each certificate type to a TA role (using a predefined mapping) and adds a new column (<code class="docutils literal notranslate"><span class="pre">TA_role</span></code>).</p></li>
+<li><p>Creates mapping series (based on <code class="docutils literal notranslate"><span class="pre">unique_id</span></code>) for both TA_role and certificate_type.</p></li>
+<li><p>Maps these values to the filtered TAs applications DataFrame.</p></li>
 </ul>
+</section>
+<section id="uid-validation">
+<h2>5. UID Validation:<a class="headerlink" href="#uid-validation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Checks that every <code class="docutils literal notranslate"><span class="pre">uid</span></code> in <code class="docutils literal notranslate"><span class="pre">combined_df</span></code> exists in the filtered TAs applications dataset.</p></li>
+<li><p>If missing UIDs are found, it reports these UIDs and checks them against the full student applications dataset (using <code class="docutils literal notranslate"><span class="pre">ST_apps_path</span></code>), printing any additional details.</p></li>
+<li><p>Filters out rows in <code class="docutils literal notranslate"><span class="pre">combined_df</span></code> whose UIDs are not present in the filtered TAs applications.</p></li>
+</ul>
+</section>
+<section id="merging-ta-information">
+<h2>6. Merging TA Information:<a class="headerlink" href="#merging-ta-information" title="Link to this heading">#</a></h2>
+<p>Merges the filtered TA applications DataFrame (with <code class="docutils literal notranslate"><span class="pre">TA</span> <span class="pre">role</span></code>, <code class="docutils literal notranslate"><span class="pre">certificate</span> <span class="pre">type</span></code>, and <code class="docutils literal notranslate"><span class="pre">career_status</span></code> columns) into the combined DataFrame on <code class="docutils literal notranslate"><span class="pre">uid</span></code> (from combined_df) and <code class="docutils literal notranslate"><span class="pre">unique_id</span></code> (from the TA dataset).</p>
+</section>
+<section id="removing-duplicate-entries">
+<h2>7. Removing Duplicate Entries:<a class="headerlink" href="#removing-duplicate-entries" title="Link to this heading">#</a></h2>
+<p>Checks for duplicate entries based on the combination of <code class="docutils literal notranslate"><span class="pre">WeekDay</span></code> and <code class="docutils literal notranslate"><span class="pre">uid</span></code>. If duplicates are found, only the first occurrence is kept.</p>
+</section>
+<section id="saving-the-output">
+<h2>8. Saving the Output:<a class="headerlink" href="#saving-the-output" title="Link to this heading">#</a></h2>
+<p>The final cleaned DataFrame is saved to a CSV file with the name specified by the <code class="docutils literal notranslate"><span class="pre">output_file</span></code> parameter. A confirmation message is printed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">clean_and_combine_data</span><span class="p">(</span>
     <span class="n">dataframes_dict</span><span class="p">,</span>
     <span class="n">TAs_apps_path</span><span class="p">,</span>
-    <span class="n">course_id</span><span class="p">,</span> 
+    <span class="n">course_id</span><span class="p">,</span>
     <span class="n">status</span><span class="p">,</span>
     <span class="n">ST_apps_path</span><span class="p">,</span>
-    <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;combined_df.csv&#39;</span>
-<span class="p">):</span>
+    <span class="n">certificates_path</span><span class="p">,</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;combined_df.csv&#39;</span><span class="p">):</span>
+<span class="w">  </span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Cleans and combines dataframes, checks UID validity, handles duplicates, and saves the final combined dataframe.</span>
+<span class="sd">    Additionally, loads the certificates dataset, adds the TA_role and certificate received based on matching UIDs.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">    - dataframes_dict: Dictionary with filenames as keys and DataFrames as values.</span>
@@ -409,6 +439,7 @@ During this process, the function provides detailed feedback:</p>
 <span class="sd">    - course_id: Course ID to filter the TAs_apps dataset.</span>
 <span class="sd">    - status: Status to filter the TAs_apps dataset.</span>
 <span class="sd">    - ST_apps_path: Path to the ST_apps dataset CSV file.</span>
+<span class="sd">    - certificates_path: Path to the certificates dataset CSV file.</span>
 <span class="sd">    - output_file: Filename to save the cleaned combined dataframe (default: &#39;combined_df.csv&#39;).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -428,21 +459,46 @@ During this process, the function provides detailed feedback:</p>
 
     <span class="c1"># Step 3: Load TAs_apps and filter by course_id and status</span>
     <span class="n">TAs_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">TAs_apps_path</span><span class="p">)</span>
-    <span class="n">TAs_apps_filtered</span> <span class="o">=</span> <span class="n">TAs_apps</span><span class="p">[(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">course_id</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">status</span><span class="p">)]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Filtered TAs_apps dataset for course of interest and TA status = macthed&quot;</span><span class="p">)</span>
+    <span class="n">TAs_apps_filtered</span> <span class="o">=</span> <span class="n">TAs_apps</span><span class="p">[(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">course_id</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">TAs_apps</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">status</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Filtered TAs_apps dataset for course of interest and TA status = matched&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of this dataset is </span><span class="si">{</span><span class="n">TAs_apps_filtered</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 
-    <span class="c1"># Step 4: Check that all UID in the new df are present in TA_apps (for the specific course and status that will be specified)</span>
+    <span class="c1"># Load certificates dataset</span>
+    <span class="n">certificates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">certificates_path</span><span class="p">)</span>
+
+    <span class="c1"># Filter certificates for course_id and certificate type</span>
+    <span class="n">certificates</span> <span class="o">=</span> <span class="n">certificates</span><span class="p">[(</span><span class="n">certificates</span><span class="p">[</span><span class="s1">&#39;course_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">course_id</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">certificates</span><span class="p">[</span><span class="s1">&#39;certificate_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;ta_certificate&#39;</span><span class="p">,</span> <span class="s1">&#39;project_ta_certificate&#39;</span><span class="p">,</span> <span class="s1">&#39;lead_ta_certificate&#39;</span><span class="p">]))]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO] Filtered certificates dataset for course_id = </span><span class="si">{</span><span class="n">course_id</span><span class="si">}</span><span class="s2"> and certificate_type&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Certificates shape: </span><span class="si">{</span><span class="n">certificates</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create a new column &#39;TA_role&#39; based on certificate_type values</span>
+    <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;ta_certificate&#39;</span><span class="p">:</span> <span class="s1">&#39;Regular TA&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;project_ta_certificate&#39;</span><span class="p">:</span> <span class="s1">&#39;Project TA&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;lead_ta_certificate&#39;</span><span class="p">:</span> <span class="s1">&#39;Lead TA&#39;</span><span class="p">}</span>
+
+    <span class="n">certificates</span><span class="p">[</span><span class="s1">&#39;TA_role&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">certificates</span><span class="p">[</span><span class="s1">&#39;certificate_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>
+
+    <span class="c1"># Create mapping series for TA_role and certificate_type using unique_id as index</span>
+    <span class="n">TA_role_mapping</span> <span class="o">=</span> <span class="n">certificates</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;unique_id&#39;</span><span class="p">)[</span><span class="s1">&#39;TA_role&#39;</span><span class="p">]</span>
+    <span class="n">certificate_type_mapping</span> <span class="o">=</span> <span class="n">certificates</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;unique_id&#39;</span><span class="p">)[</span><span class="s1">&#39;certificate_type&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Map the values to TAs_apps_filtered based on unique_id</span>
+    <span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;TA_role&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">TA_role_mapping</span><span class="p">)</span>
+    <span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;certificate_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">certificate_type_mapping</span><span class="p">)</span>
+
+    <span class="c1"># Step 4: Check that all UID in the combined dataframe are present in TAs_apps_filtered</span>
     <span class="n">missing_values</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TAs_apps_filtered</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]),</span> <span class="s1">&#39;uid&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="c1"># print(f&quot;{len(missing_values)} are not found in the TA_apps dataset filtered for matched and course_id&quot;)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[WARNING]: </span><span class="si">{</span><span class="n">missing_values</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> unique_id are not found in the TA_apps dataset filtered for matched and course_id&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;List:&quot;</span><span class="p">,</span> <span class="n">missing_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-
+        
         <span class="c1"># 4A: Check these missing UIDs in the FULL ST_apps</span>
         <span class="n">ST_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ST_apps_path</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Checking whether the unique_id not found in the list of matched TAs are associated with students unique_id...&quot;</span><span class="p">)</span>
@@ -477,11 +533,15 @@ During this process, the function provides detailed feedback:</p>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">TAs_apps_filtered</span><span class="p">[[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">,</span><span class="s1">&#39;TA_role&#39;</span><span class="p">,</span> <span class="s1">&#39;certificate_type&#39;</span><span class="p">,</span> <span class="s1">&#39;career_status&#39;</span><span class="p">]],</span>
+        <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;uid&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;unique_id&#39;</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
     <span class="c1"># Step 5: Check for duplicates within each WeekDay and UID combination</span>
     <span class="n">duplicates</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">duplicates</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duplicate entries found based on [&#39;WeekDay&#39;, &#39;uid&#39;]: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1">#print(len(duplicates))</span>
         <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;WeekDay&#39;</span><span class="p">,</span> <span class="s1">&#39;uid&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed duplicates. New shape:&quot;</span><span class="p">,</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
@@ -492,20 +552,20 @@ During this process, the function provides detailed feedback:</p>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cleaned DataFrame saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">combined_df</span>
+<span class="n">a</span>
 </pre></div>
 </div>
 </section>
 <section id="call-the-function">
 <h2>Call the function<a class="headerlink" href="#call-the-function" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Specify the path to the TAs_apps dataset, course ID, and status:</span>
-<span class="n">combined_df</span> <span class="o">=</span> <span class="n">clean_and_combine_data</span><span class="p">(</span>
-    <span class="n">dataframes_dict</span> <span class="o">=</span><span class="n">dataframes_dict</span><span class="p">,</span>
-    <span class="n">TAs_apps_path</span>   <span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
-    <span class="n">course_id</span>       <span class="o">=</span><span class="mi">12</span><span class="p">,</span>       <span class="c1"># Specify the course_id number of interest</span>
-    <span class="n">status</span>          <span class="o">=</span><span class="s2">&quot;matched&quot;</span><span class="p">,</span>   <span class="c1"># Do NOT change the status</span>
-    <span class="n">ST_apps_path</span>    <span class="o">=</span><span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
-    <span class="n">output_file</span>     <span class="o">=</span><span class="s2">&quot;cleaned_combined_df.csv&quot;</span>
-<span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">combined_df</span> <span class="o">=</span> <span class="n">clean_and_combine_data</span><span class="p">(</span>
+              <span class="n">dataframes_dict</span>   <span class="o">=</span> <span class="n">dataframes_dict</span><span class="p">,</span>
+              <span class="n">TAs_apps_path</span>     <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/TAs_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
+              <span class="n">course_id</span>         <span class="o">=</span> <span class="mi">13</span><span class="p">,</span>       <span class="c1"># Specify the course_id number of interest</span>
+              <span class="n">status</span>            <span class="o">=</span> <span class="s2">&quot;matched&quot;</span><span class="p">,</span>   <span class="c1"># Do NOT change the status</span>
+              <span class="n">ST_apps_path</span>      <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/Students_ReceivedApp_from2021.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 2025</span>
+              <span class="n">certificates_path</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/Academies_DataAnalysis/General/Certificate2024.csv&quot;</span><span class="p">,</span> <span class="c1"># to be updated in 202</span>
+              <span class="n">output_file</span>       <span class="o">=</span> <span class="s2">&quot;cleaned_combined_df.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -566,8 +626,7 @@ During this process, the function provides detailed feedback:</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -576,11 +635,14 @@ During this process, the function provides detailed feedback:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-weekday-column">Add the “WeekDay” Column:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-all-dataframes">Combine All DataFrames:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-tas-using-the-tas-apps-dataset">Validate TAs Using the TAs_apps Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-duplicate-entries">Remove Duplicate Entries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-cleaned-dataset">Save the Cleaned Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-weekday-from-filenames">1. Extracting WeekDay from Filenames:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-dataframes">2. Combining DataFrames:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-ta-applications">3. Filtering TA Applications:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#processing-certificates">4. Processing Certificates:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uid-validation">5. UID Validation:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-ta-information">6. Merging TA Information:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-duplicate-entries">7. Removing Duplicate Entries:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-output">8. Saving the Output:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#call-the-function">Call the function</a></li>
 </ul>
   </nav></div>
@@ -630,8 +692,8 @@ By Viviana Greco
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
