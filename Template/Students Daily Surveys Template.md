@@ -16,4 +16,4 @@ To use this pipeline in your own analysis, follow these steps:
 **Download the Template**
 If you prefer to run the analysis locally in Jupyter Notebook, you can download the .ipynb file:
 
-📥 [Download the Template Notebook](https://github.com/ViviNeuro/Neuromatch-Data-Analysis-Team-Organization/blob/main/Template/Students_Daily_Surveys_Template.ipynb)
+📥 [Download the Template Notebook](https://github.com/ViviNeuro/Neuromatch-Data-Analysis-Team-Organization/blob/main/Template/Students_Daily%20Surveys_Template.ipynb)
