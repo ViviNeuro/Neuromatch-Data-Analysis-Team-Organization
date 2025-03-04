@@ -1,6 +1,6 @@
 # Welcome to the Data Analysis Team!
 
-Hello everyone, and welcome to the Data Analysis Team for Neuromatch and Climatematch! We're excited to have you on board.
+Hello and welcome to the Data Analysis Team for Neuromatch and Climatematch! We're excited to have you on board.
 
 Our goal is to **standardize the analysis process** to ensure that everyone works with clean, consistently preprocessed data. This not only streamlines our workflows but also helps maintain **accuracy and reproducibility** in our analyses.
 
