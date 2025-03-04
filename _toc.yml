@@ -14,14 +14,14 @@ parts:
   chapters:
   - file: WorkTogether/Imports & Loading set up
     title: Imports & Loading set up
-  - file: WorkTogether/Daily surveys_Students_Cleaning
-    title: Students Daily Surveys - Cleaning 
   - file: WorkTogether/Daily surveys_Students
     title: Students Daily Surveys - Key Analysis Questions
-  - file: WorkTogether/Daily surveys_TAs_Cleaning
-    title: TAs Daily Surveys - Cleaning 
+  - file: WorkTogether/Daily surveys_Students_Cleaning
+    title: Students Daily Surveys - Cleaning 
   - file: WorkTogether/Daily surveys_TAs
     title: TAs Daily Surveys - Key Analysis Questions
+  - file: WorkTogether/Daily surveys_TAs_Cleaning
+    title: TAs Daily Surveys - Cleaning 
 - caption: Enrolment and Post Course
   chapters:
   - file: E&P/Enrolment

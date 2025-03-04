@@ -8,7 +8,7 @@ The data are organized in Google Drive and structured by year. Each folder corre
 **Link to Google Drive**:  
 📂 [**Academies_DataAnalysis**](https://drive.google.com/drive/folders/1MZPn-ceDuyqoCc-gdiKsAw336Swg8qzZ)
 
-If you do not have access, please reach out to **Viviana Greco** or **Courtney Dean**.
+If you do not have access, please reach out to **Viviana Greco** or **Courtney Dean** on Slack.
 
 ---
 
